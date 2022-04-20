@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class TripDaoImpl implements TripDao {
     @Override
-    public void createCompany(Trip trip) {
+    public void createTrip(Trip trip) {
 
     }
 
@@ -22,7 +22,7 @@ public class TripDaoImpl implements TripDao {
     }
 
     @Override
-    public Trip getCompanyById(int id) {
+    public Trip getTripById(int id) {
         return null;
     }
 

@@ -6,8 +6,9 @@ import model.PassInTrip;
 import java.util.Set;
 
 public class PassInTripDaoImpl implements PassInTripDao {
+
     @Override
-    public void createCompany(PassInTrip passInTrip) {
+    public void createPassInTrip(PassInTrip passInTrip) {
 
     }
 
@@ -22,7 +23,7 @@ public class PassInTripDaoImpl implements PassInTripDao {
     }
 
     @Override
-    public PassInTrip getCompanyById(int id) {
+    public PassInTrip getPassInTripById(int id) {
         return null;
     }
 
