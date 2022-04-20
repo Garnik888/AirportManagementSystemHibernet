@@ -4,9 +4,8 @@ import dao.AddressDao;
 import model.Address;
 import service.DatabaseConnectionService;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.HashSet;
 import java.util.Set;
 
 public class AddressDaoImpl implements AddressDao {
@@ -17,9 +16,9 @@ public class AddressDaoImpl implements AddressDao {
                 DatabaseConnectionService.DB_INSTANCE.createConnection();
 
         String query =
-                "INSERT INTO Employee (country, city)" +
+                "INSERT INTO Address (country, city)" +
                         " VALUES ('" +
-                        address.getCountry() + "', '" +
+                        address.getCountry() + "', " +
                         address.getCity() + ");";
 
         Statement statement = null;
@@ -44,21 +43,104 @@ public class AddressDaoImpl implements AddressDao {
 
     @Override
     public void update(int id, Address address) {
+        try (Connection connection = DatabaseConnectionService
+                .DB_INSTANCE.createConnection();
+             PreparedStatement preparedStatement =
+                     connection.prepareStatement(
+                             "UPDATE Address " +
+                                     "SET country = ?, " +
+                                     "city = ? " +
+                                     "WHERE id = ?;"
+                     )
+        ) {
+            preparedStatement.setString(1, address.getCountry());
+            preparedStatement.setString(2, address.getCity());
+            preparedStatement.setInt(3, id);
 
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override
     public void deleteById(int id) {
-
+        Connection connection =
+                DatabaseConnectionService.DB_INSTANCE.createConnection();
+        try {
+            Statement statement = connection.createStatement();
+            String query = "DELETE FROM Address WHERE id = " + id + ";";
+            statement.execute(query);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override
     public Address getAddressById(int id) {
-        return null;
+        Connection connection =
+                DatabaseConnectionService.DB_INSTANCE.createConnection();
+
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+        Address address = null;
+        try {
+            preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM Address WHERE id = ?"
+            );
+
+            preparedStatement.setInt(1, id);
+
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+               address = new Address(
+                        resultSet.getString("country"),
+                        resultSet.getString("city")
+                );
+            }
+
+        } catch (SQLException throwables) {
+            System.out.println("Wrong query for Address with id=" + id);
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException throwables) {
+                System.out.println("Connection cannot close");
+            }
+        }
+
+        return address;
     }
 
     @Override
     public Set<Address> getAll() {
-        return null;
+
+        Set<Address> addreses = null;
+        try (Connection connection = DatabaseConnectionService
+                .DB_INSTANCE.createConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet =
+                     statement.executeQuery(
+                             "SELECT * FROM Address"
+                     )
+        ) {
+            addreses = new HashSet<>();
+
+            Address address;
+            while (resultSet.next()) {
+                address = new Address(
+                        resultSet.getString("country"),
+                        resultSet.getString("city")
+                );
+
+                addreses.add(address);
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return addreses;
     }
 }
