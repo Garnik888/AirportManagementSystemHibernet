@@ -9,7 +9,7 @@ public class Passenger {
     private String name;
     private String phone;
 
-    public Passenger() {
+    public Passenger(int id, String pass_name, String pass_phone, int address_id) {
     }
 
     public Passenger(int id, int idAddress, String name, String phone) {

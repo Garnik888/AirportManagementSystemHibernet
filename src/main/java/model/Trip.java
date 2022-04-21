@@ -1,7 +1,7 @@
 package model;
 
+import java.sql.Time;
 import java.time.LocalTime;
-import java.util.Locale;
 import java.util.Objects;
 
 public class Trip {
@@ -14,13 +14,11 @@ public class Trip {
     private LocalTime timeOut;
     private LocalTime timeIn;
 
-    public Trip() {
+    public Trip(int id, int comp_id, String plane, String town_from, String town_to, Time time_out, Time time_in) {
     }
 
-    public Trip(int id, int idComp,
-                String plane, String townFrom,
-                String townTo, LocalTime timeOut,
-                LocalTime timeIn) {
+    public Trip(int id, int idComp, String plane,
+                String townFrom, String townTo, LocalTime timeOut, LocalTime timeIn) {
         this.id = id;
         this.idComp = idComp;
         this.plane = plane;
@@ -69,6 +67,7 @@ public class Trip {
     public void setTownTo(String townTo) {
         this.townTo = townTo;
     }
+
 
     public LocalTime getTimeOut() {
         return timeOut;
