@@ -9,6 +9,8 @@ public class Address {
     private String city;
 
     public Address(String country, String city) {
+        this.country = country;
+        this.city = city;
     }
 
     public Address(int id, String country, String city) {
@@ -16,6 +18,7 @@ public class Address {
         this.country = country;
         this.city = city;
     }
+
     public int getId() {
         return id;
     }
@@ -59,6 +62,6 @@ public class Address {
                 "id=" + id +
                 ", country='" + country + '\'' +
                 ", city='" + city + '\'' +
-                '}';
+                "}\n";
     }
 }

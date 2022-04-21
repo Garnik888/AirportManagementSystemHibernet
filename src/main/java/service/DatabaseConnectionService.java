@@ -17,20 +17,11 @@ public enum DatabaseConnectionService {
         Connection con = null;
 
         try {
-            con = DriverManager.getConnection(DATABASE_URL, USERNAME, PASSWORD);
-            System.out.println("Success");
+            return con = DriverManager.getConnection(DATABASE_URL, USERNAME, PASSWORD);
         } catch (Exception ex) {
             ex.printStackTrace();
-        } finally {
-            try {
-                if (con != null) {
-                    con.close();
-                }
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
         }
 
-        return con;
+        return null;
     }
 }

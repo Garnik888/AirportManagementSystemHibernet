@@ -8,13 +8,16 @@ public class AMS_app {
         AddressDao addressDao =new AddressDaoImpl();
 
 
-        for (int i = 0; i < 10; i++) {
-            addressDao.createAddress(
-                    new Address(i,
-                            "Yerevan" + i,
-                            "Komitas"+i
-                    )
-            );
-        }
+//        for (int i = 4; i < 8; i++) {
+//            addressDao.createAddress(
+//                    new Address(i,
+//                            "Yerevan" + i,
+//                            "Komitas"+i
+//                    )
+//            );
+//        }
+
+        addressDao.update(14, new Address("fghfhgf", "gfashgf"));
+        System.out.println(addressDao.getAddressById(14));
     }
 }

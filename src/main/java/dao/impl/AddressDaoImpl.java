@@ -18,8 +18,8 @@ public class AddressDaoImpl implements AddressDao {
         String query =
                 "INSERT INTO Address (country, city)" +
                         " VALUES ('" +
-                        address.getCountry() + "', " +
-                        address.getCity() + ");";
+                        address.getCountry() + "', '" +
+                        address.getCity() + "');";
 
         Statement statement = null;
         try {
@@ -44,21 +44,24 @@ public class AddressDaoImpl implements AddressDao {
     @Override
     public void update(int id, Address address) {
         try (Connection connection = DatabaseConnectionService
-                .DB_INSTANCE.createConnection();
-             PreparedStatement preparedStatement =
-                     connection.prepareStatement(
-                             "UPDATE Address " +
-                                     "SET country = ?, " +
-                                     "city = ? " +
-                                     "WHERE id = ?;"
-                     )
+                .DB_INSTANCE.createConnection()
         ) {
-            preparedStatement.setString(1, address.getCountry());
-            preparedStatement.setString(2, address.getCity());
-            preparedStatement.setInt(3, id);
+            assert connection != null;
+            try (PreparedStatement preparedStatement =
+                         connection.prepareStatement(
+                                 "UPDATE Address " +
+                                         "SET country = ?," +
+                                         "city = ? " +
+                                         "WHERE id = ?"
+                         )
+            ) {
+                preparedStatement.setString(1, address.getCountry());
+                preparedStatement.setString(2, address.getCity());
+                preparedStatement.setInt(3, id);
 
-            preparedStatement.executeUpdate();
+                preparedStatement.executeUpdate();
 
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -72,6 +75,7 @@ public class AddressDaoImpl implements AddressDao {
             Statement statement = connection.createStatement();
             String query = "DELETE FROM Address WHERE id = " + id + ";";
             statement.execute(query);
+            statement.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -94,7 +98,8 @@ public class AddressDaoImpl implements AddressDao {
 
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-               address = new Address(
+                address = new Address(
+                        resultSet.getInt("id"),
                         resultSet.getString("country"),
                         resultSet.getString("city")
                 );
@@ -130,6 +135,7 @@ public class AddressDaoImpl implements AddressDao {
             Address address;
             while (resultSet.next()) {
                 address = new Address(
+                        resultSet.getInt("id"),
                         resultSet.getString("country"),
                         resultSet.getString("city")
                 );
