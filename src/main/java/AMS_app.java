@@ -23,18 +23,18 @@ public class AMS_app {
         TripDao tripDao = new TripDaoImpl();
 
 
-        for (int i = 5; i < 11; i++) {
-            tripDao.createTrip(
-                    new Trip(i, 3,
-                            "ARM" + i,
-                            "Yerevan" + i,
-                            "LOndon" + i, LocalTime.of(14, 25, 36), LocalTime.of(20, 12, 03)
-                    )
-            );
-        }
+//        for (int i = 4; i < 8; i++) {
+//            tripDao.createTrip(
+//                    new Trip(i, 2,
+//                            "ARM" + i,
+//                            "Yerevan" + i,
+//                            "LOndon" + i, LocalTime.of(14, 25, 36), LocalTime.of(20, 12, 03)
+//                    )
+//            );
+//        }
 
-//        tripDao.update(4, new Trip(2,3,"bugj","dsfd","dgdf", LocalTime.of(1, 1, 1),LocalTime.of(2, 2, 2)));
-//        System.out.println(tripDao.getTripById(4));
+        tripDao.update(4, new Trip(2,3,"bugj","dsfd","dgdf", LocalTime.of(1, 1, 1),LocalTime.of(2, 2, 2)));
+        System.out.println(tripDao.getTripById(4));
 
     }
 }

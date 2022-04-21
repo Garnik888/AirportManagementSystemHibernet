@@ -73,6 +73,6 @@ public class PassInTrip {
                 ", idPsg=" + idPsg +
                 ", date=" + date +
                 ", place='" + place + '\'' +
-                '}';
+                "}\n";
     }
 }

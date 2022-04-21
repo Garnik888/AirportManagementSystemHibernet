@@ -103,18 +103,19 @@ public class PassengerDaoImpl implements PassengerDao {
             if (resultSet.next()) {
                 passenger = new Passenger(
                         resultSet.getInt("id"),
+                        resultSet.getInt("address_id"),
                         resultSet.getString("pass_name"),
-                        resultSet.getString("pass_phone"),
-                        resultSet.getInt("address_id")
+                        resultSet.getString("pass_phone")
+
                 );
             }
 
-        } catch (SQLException throwables) {
+        } catch (SQLException e) {
             System.out.println("Wrong query for Passenger with id=" + id);
         } finally {
             try {
                 connection.close();
-            } catch (SQLException throwables) {
+            } catch (SQLException e) {
                 System.out.println("Connection cannot close");
             }
         }
@@ -139,16 +140,17 @@ public class PassengerDaoImpl implements PassengerDao {
             while (resultSet.next()) {
                 passenger= new Passenger(
                         resultSet.getInt("id"),
+                        resultSet.getInt("address_id"),
                         resultSet.getString("pass_name"),
-                        resultSet.getString("pass_phone"),
-                        resultSet.getInt("address_id")
+                        resultSet.getString("pass_phone")
+
                 );
 
                 passengeres.add(passenger);
             }
 
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
         return passengeres;

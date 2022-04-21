@@ -1,11 +1,11 @@
 package dao.impl;
 
 import dao.TripDao;
-import model.Address;
 import model.Trip;
 import service.DatabaseConnectionService;
 
 import java.sql.*;
+import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,10 +27,11 @@ public class TripDaoImpl implements TripDao {
 
         Statement statement = null;
         try {
+            assert connection != null;
             statement = connection.createStatement();
             statement.execute(query);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         } finally {
             try {
                 if (statement != null) {
@@ -39,8 +40,8 @@ public class TripDaoImpl implements TripDao {
                 if (connection != null) {
                     connection.close();
                 }
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -109,6 +110,7 @@ public class TripDaoImpl implements TripDao {
             preparedStatement.setInt(1, id);
 
             resultSet = preparedStatement.executeQuery();
+
             if (resultSet.next()) {
                 trip = new Trip(
                         resultSet.getInt("id"),
@@ -116,8 +118,8 @@ public class TripDaoImpl implements TripDao {
                         resultSet.getString("plane"),
                         resultSet.getString("town_from"),
                         resultSet.getString("town_to"),
-                        resultSet.getTime("time_out"),
-                        resultSet.getTime("time_in")
+                        LocalTime.parse(resultSet.getTime("time_out").toString()),
+                        LocalTime.parse(resultSet.getTime("time_in").toString())
 
                 );
             }
@@ -155,8 +157,8 @@ public class TripDaoImpl implements TripDao {
                         resultSet.getString("plane"),
                         resultSet.getString("town_from"),
                         resultSet.getString("town_to"),
-                        resultSet.getTime("time_out"),
-                        resultSet.getTime("time_in")
+                        LocalTime.parse(resultSet.getTime("time_out").toString()),
+                        LocalTime.parse(resultSet.getTime("time_in").toString())
                 );
 
                 tripses.add(trip);

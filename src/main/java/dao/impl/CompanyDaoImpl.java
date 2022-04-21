@@ -6,6 +6,7 @@ import model.Company;
 import service.DatabaseConnectionService;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -62,8 +63,8 @@ public class CompanyDaoImpl implements CompanyDao {
                 preparedStatement.executeUpdate();
 
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -76,8 +77,8 @@ public class CompanyDaoImpl implements CompanyDao {
             String query = "DELETE FROM Company WHERE id = " + id + ";";
             statement.execute(query);
             statement.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -101,16 +102,16 @@ public class CompanyDaoImpl implements CompanyDao {
                 company = new Company(
                         resultSet.getInt("id"),
                         resultSet.getString("company_name"),
-                        resultSet.getDate("founding_date")
+                        LocalDate.parse(resultSet.getDate("founding_date").toString())
                 );
             }
 
-        } catch (SQLException throwables) {
+        } catch (SQLException e) {
             System.out.println("Wrong query for Company with id=" + id);
         } finally {
             try {
                 connection.close();
-            } catch (SQLException throwables) {
+            } catch (SQLException e) {
                 System.out.println("Connection cannot close");
             }
         }
@@ -136,7 +137,7 @@ public class CompanyDaoImpl implements CompanyDao {
                 company = new Company(
                         resultSet.getInt("id"),
                         resultSet.getString("company_name"),
-                        resultSet.getDate("founding_date")
+                        LocalDate.parse(resultSet.getDate("founding_date").toString())
                 );
 
                 companies.add(company);

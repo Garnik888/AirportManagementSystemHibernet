@@ -9,7 +9,9 @@ public class Company {
     private String companyName;
     private LocalDate founding_date;
 
-    public Company(int id, String company_name, Date founding_date) {
+    public Company(String companyName, LocalDate founding_date) {
+        this.companyName = companyName;
+        this.founding_date = founding_date;
     }
 
     public Company(int id, String companyName, LocalDate founding_date) {
@@ -61,6 +63,6 @@ public class Company {
                 "id=" + id +
                 ", companyName='" + companyName + '\'' +
                 ", founding_date=" + founding_date +
-                '}';
+                "}\n";
     }
 }

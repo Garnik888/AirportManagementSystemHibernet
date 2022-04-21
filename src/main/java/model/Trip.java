@@ -14,11 +14,20 @@ public class Trip {
     private LocalTime timeOut;
     private LocalTime timeIn;
 
-    public Trip(int id, int comp_id, String plane, String town_from, String town_to, Time time_out, Time time_in) {
+    public Trip(int idComp, String plane,
+                String townFrom, String townTo,
+                LocalTime timeOut, LocalTime timeIn) {
+        this.idComp = idComp;
+        this.plane = plane;
+        this.townFrom = townFrom;
+        this.townTo = townTo;
+        this.timeOut = timeOut;
+        this.timeIn = timeIn;
     }
 
     public Trip(int id, int idComp, String plane,
-                String townFrom, String townTo, LocalTime timeOut, LocalTime timeIn) {
+                String townFrom, String townTo,
+                LocalTime timeOut, LocalTime timeIn) {
         this.id = id;
         this.idComp = idComp;
         this.plane = plane;
@@ -108,6 +117,6 @@ public class Trip {
                 ", townTo='" + townTo + '\'' +
                 ", timeOut=" + timeOut +
                 ", timeIn=" + timeIn +
-                '}';
+                "}\n";
     }
 }

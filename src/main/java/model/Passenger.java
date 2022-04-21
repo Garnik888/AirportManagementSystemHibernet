@@ -9,7 +9,10 @@ public class Passenger {
     private String name;
     private String phone;
 
-    public Passenger(int id, String pass_name, String pass_phone, int address_id) {
+    public Passenger(int idAddress, String name, String phone) {
+        this.idAddress = idAddress;
+        this.name = name;
+        this.phone = phone;
     }
 
     public Passenger(int id, int idAddress, String name, String phone) {
@@ -71,6 +74,6 @@ public class Passenger {
                 ", idAddress=" + idAddress +
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
-                '}';
+                "}\n";
     }
 }
