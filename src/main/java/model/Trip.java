@@ -6,15 +6,15 @@ import java.util.Objects;
 
 public class Trip {
 
-    private int id;
-    private int idComp;
+    private long id;
+    private long idComp;
     private String plane;
     private String townFrom;
     private String townTo;
     private LocalTime timeOut;
     private LocalTime timeIn;
 
-    public Trip(int idComp, String plane,
+    public Trip(long idComp, String plane,
                 String townFrom, String townTo,
                 LocalTime timeOut, LocalTime timeIn) {
         this.idComp = idComp;
@@ -25,7 +25,7 @@ public class Trip {
         this.timeIn = timeIn;
     }
 
-    public Trip(int id, int idComp, String plane,
+    public Trip(long id, long idComp, String plane,
                 String townFrom, String townTo,
                 LocalTime timeOut, LocalTime timeIn) {
         this.id = id;
@@ -37,19 +37,19 @@ public class Trip {
         this.timeIn = timeIn;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public int getIdComp() {
+    public long getIdComp() {
         return idComp;
     }
 
-    public void setIdComp(int idComp) {
+    public void setIdComp(long idComp) {
         this.idComp = idComp;
     }
 

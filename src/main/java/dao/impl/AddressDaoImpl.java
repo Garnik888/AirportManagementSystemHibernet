@@ -42,7 +42,7 @@ public class AddressDaoImpl implements AddressDao {
     }
 
     @Override
-    public void update(int id, Address address) {
+    public void update(long id, Address address) {
         try (Connection connection = DatabaseConnectionService
                 .DB_INSTANCE.createConnection()
         ) {
@@ -57,7 +57,7 @@ public class AddressDaoImpl implements AddressDao {
             ) {
                 preparedStatement.setString(1, address.getCountry());
                 preparedStatement.setString(2, address.getCity());
-                preparedStatement.setInt(3, id);
+                preparedStatement.setLong(3, id);
 
                 preparedStatement.executeUpdate();
 
@@ -68,7 +68,7 @@ public class AddressDaoImpl implements AddressDao {
     }
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(long id) {
         Connection connection =
                 DatabaseConnectionService.DB_INSTANCE.createConnection();
         try {
@@ -82,7 +82,7 @@ public class AddressDaoImpl implements AddressDao {
     }
 
     @Override
-    public Address getAddressById(int id) {
+    public Address getAddressById(long id) {
         Connection connection =
                 DatabaseConnectionService.DB_INSTANCE.createConnection();
 
@@ -94,7 +94,7 @@ public class AddressDaoImpl implements AddressDao {
                     "SELECT * FROM Address WHERE id = ?"
             );
 
-            preparedStatement.setInt(1, id);
+            preparedStatement.setLong(1, id);
 
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {

@@ -8,11 +8,11 @@ public interface CompanyDao {
 
     void createCompany(Company company);
 
-    void update(int id, Company company);
+    void update(long id, Company company);
 
-    void deleteById(int id);
+    void deleteById(long id);
 
-    Company getCompanyById(int id);
+    Company getCompanyById(long id);
 
     Set<Company> getAll();
 }

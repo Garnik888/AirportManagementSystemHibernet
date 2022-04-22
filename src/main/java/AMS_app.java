@@ -6,9 +6,6 @@ import dao.impl.AddressDaoImpl;
 import dao.impl.CompanyDaoImpl;
 import dao.impl.PassengerDaoImpl;
 import dao.impl.TripDaoImpl;
-import model.Address;
-import model.Company;
-import model.Passenger;
 import model.Trip;
 
 import java.time.LocalDate;

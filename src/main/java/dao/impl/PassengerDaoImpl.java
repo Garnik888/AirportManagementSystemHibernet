@@ -43,7 +43,7 @@ public class PassengerDaoImpl implements PassengerDao {
     }
 
     @Override
-    public void update(int id, Passenger passenger) {
+    public void update(long id, Passenger passenger) {
         try (Connection connection = DatabaseConnectionService
                 .DB_INSTANCE.createConnection()
         ) {
@@ -59,8 +59,8 @@ public class PassengerDaoImpl implements PassengerDao {
             ) {
                 preparedStatement.setString(1, passenger.getName());
                 preparedStatement.setString(2, passenger.getPhone());
-                preparedStatement.setInt(3, passenger.getIdAddress());
-                preparedStatement.setInt(4, id);
+                preparedStatement.setLong(3, passenger.getIdAddress());
+                preparedStatement.setLong(4, id);
 
                 preparedStatement.executeUpdate();
 
@@ -71,7 +71,7 @@ public class PassengerDaoImpl implements PassengerDao {
     }
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(long id) {
         Connection connection =
                 DatabaseConnectionService.DB_INSTANCE.createConnection();
         try {
@@ -85,7 +85,7 @@ public class PassengerDaoImpl implements PassengerDao {
     }
 
     @Override
-    public Passenger getPassengerById(int id) {
+    public Passenger getPassengerById(long id) {
         Connection connection =
                 DatabaseConnectionService.DB_INSTANCE.createConnection();
 
@@ -97,7 +97,7 @@ public class PassengerDaoImpl implements PassengerDao {
                     "SELECT * FROM Passenger WHERE id = ?"
             );
 
-            preparedStatement.setInt(1, id);
+            preparedStatement.setLong(1, id);
 
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {

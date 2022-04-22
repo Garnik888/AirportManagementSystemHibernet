@@ -8,11 +8,11 @@ public interface PassengerDao {
 
     void createPassenger(Passenger passenger);
 
-    void update(int id, Passenger passenger);
+    void update(long id, Passenger passenger);
 
-    void deleteById(int id);
+    void deleteById(long id);
 
-    Passenger getPassengerById(int id);
+    Passenger getPassengerById(long id);
 
     Set<Passenger> getAll();
 }

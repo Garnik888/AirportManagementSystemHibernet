@@ -43,7 +43,7 @@ public class CompanyDaoImpl implements CompanyDao {
     }
 
     @Override
-    public void update(int id, Company company) {
+    public void update(long id, Company company) {
         try (Connection connection = DatabaseConnectionService
                 .DB_INSTANCE.createConnection()
         ) {
@@ -58,7 +58,7 @@ public class CompanyDaoImpl implements CompanyDao {
             ) {
                 preparedStatement.setString(1, company.getCompanyName());
                 preparedStatement.setDate(2, Date.valueOf(company.getFounding_date()));
-                preparedStatement.setInt(3, id);
+                preparedStatement.setLong(3, id);
 
                 preparedStatement.executeUpdate();
 
@@ -69,7 +69,7 @@ public class CompanyDaoImpl implements CompanyDao {
     }
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(long id) {
         Connection connection =
                 DatabaseConnectionService.DB_INSTANCE.createConnection();
         try {
@@ -83,7 +83,7 @@ public class CompanyDaoImpl implements CompanyDao {
     }
 
     @Override
-    public Company getCompanyById(int id) {
+    public Company getCompanyById(long id) {
         Connection connection =
                 DatabaseConnectionService.DB_INSTANCE.createConnection();
 
@@ -95,7 +95,7 @@ public class CompanyDaoImpl implements CompanyDao {
                     "SELECT * FROM Company WHERE id = ?"
             );
 
-            preparedStatement.setInt(1, id);
+            preparedStatement.setLong(1, id);
 
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {

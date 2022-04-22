@@ -1,14 +1,16 @@
 package service.impl;
 
+import dao.impl.CompanyDaoImpl;
 import model.Company;
 import service.CompanyService;
 
 import java.util.Set;
 
+
 public class CompanyServiceImpl implements CompanyService {
+    CompanyDaoImpl cdi=new CompanyDaoImpl();
     @Override
-    public Company getById(long id) {
-        return null;
+    public Company getById(long id) { return null;
     }
 
     @Override

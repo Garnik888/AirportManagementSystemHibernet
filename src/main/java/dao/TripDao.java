@@ -8,11 +8,11 @@ public interface TripDao {
 
     void createTrip(Trip trip);
 
-    void update(int id, Trip trip);
+    void update(long id, Trip trip);
 
-    void deleteById(int id);
+    void deleteById(long id);
 
-    Trip getTripById(int id);
+    Trip getTripById(long id);
 
     Set<Trip> getAll();
 }

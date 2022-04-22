@@ -4,37 +4,37 @@ import java.util.Objects;
 
 public class Passenger {
 
-    private int id;
-    private int idAddress;
+    private long id;
+    private long idAddress;
     private String name;
     private String phone;
 
-    public Passenger(int idAddress, String name, String phone) {
+    public Passenger(long idAddress, String name, String phone) {
         this.idAddress = idAddress;
         this.name = name;
         this.phone = phone;
     }
 
-    public Passenger(int id, int idAddress, String name, String phone) {
+    public Passenger(long id, long idAddress, String name, String phone) {
         this.id = id;
         this.idAddress = idAddress;
         this.name = name;
         this.phone = phone;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public int getIdAddress() {
+    public long getIdAddress() {
         return idAddress;
     }
 
-    public void setIdAddress(int idAddress) {
+    public void setIdAddress(long idAddress) {
         this.idAddress = idAddress;
     }
 

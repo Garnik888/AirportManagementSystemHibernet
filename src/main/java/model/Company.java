@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 public class Company {
 
-    private int id;
+    private long id;
     private String companyName;
     private LocalDate founding_date;
 
@@ -14,17 +14,17 @@ public class Company {
         this.founding_date = founding_date;
     }
 
-    public Company(int id, String companyName, LocalDate founding_date) {
+    public Company(long id, String companyName, LocalDate founding_date) {
         this.id = id;
         this.companyName = companyName;
         this.founding_date = founding_date;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

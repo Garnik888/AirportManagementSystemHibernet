@@ -8,11 +8,11 @@ public interface AddressDao {
 
     void createAddress(Address address);
 
-    void update(int id, Address address);
+    void update(long id, Address address);
 
-    void deleteById(int id);
+    void deleteById(long id);
 
-    Address getAddressById(int id);
+    Address getAddressById(long id);
 
     Set<Address> getAll();
 }

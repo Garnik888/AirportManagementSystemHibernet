@@ -47,7 +47,7 @@ public class TripDaoImpl implements TripDao {
     }
 
     @Override
-    public void update(int id, Trip trip) {
+    public void update(long id, Trip trip) {
         try (Connection connection = DatabaseConnectionService
                 .DB_INSTANCE.createConnection()
         ) {
@@ -64,13 +64,13 @@ public class TripDaoImpl implements TripDao {
                                          "WHERE id = ?"
                          )
             ) {
-                preparedStatement.setInt(1, trip.getIdComp());
+                preparedStatement.setLong(1, trip.getIdComp());
                 preparedStatement.setString(2, trip.getPlane());
                 preparedStatement.setString(3, trip.getTownFrom());
                 preparedStatement.setString(4, trip.getTownTo());
                 preparedStatement.setTime(5, Time.valueOf(trip.getTimeOut()));
                 preparedStatement.setTime(6, Time.valueOf(trip.getTimeIn()));
-                preparedStatement.setInt(7, id);
+                preparedStatement.setLong(7, id);
 
                 preparedStatement.executeUpdate();
 
@@ -81,7 +81,7 @@ public class TripDaoImpl implements TripDao {
     }
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(long id) {
         Connection connection =
                 DatabaseConnectionService.DB_INSTANCE.createConnection();
         try {
@@ -95,7 +95,7 @@ public class TripDaoImpl implements TripDao {
     }
 
     @Override
-    public Trip getTripById(int id) {
+    public Trip getTripById(long id) {
         Connection connection =
                 DatabaseConnectionService.DB_INSTANCE.createConnection();
 
@@ -107,7 +107,7 @@ public class TripDaoImpl implements TripDao {
                     "SELECT * FROM Trip WHERE id = ?"
             );
 
-            preparedStatement.setInt(1, id);
+            preparedStatement.setLong(1, id);
 
             resultSet = preparedStatement.executeQuery();
 

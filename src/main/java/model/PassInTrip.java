@@ -5,8 +5,8 @@ import java.util.Objects;
 
 public class PassInTrip {
 
-    private int idTrip;
-    private int idPsg;
+    private long idTrip;
+    private long idPsg;
     private LocalDate date;
     private String place;
 
@@ -14,26 +14,26 @@ public class PassInTrip {
 
     }
 
-    public PassInTrip(int idTrip, int idPsg, LocalDate date, String place) {
+    public PassInTrip(long idTrip, long idPsg, LocalDate date, String place) {
         this.idTrip = idTrip;
         this.idPsg = idPsg;
         this.date = date;
         this.place = place;
     }
 
-    public int getIdTrip() {
+    public long getIdTrip() {
         return idTrip;
     }
 
-    public void setIdTrip(int idTrip) {
+    public void setIdTrip(long idTrip) {
         this.idTrip = idTrip;
     }
 
-    public int getIdPsg() {
+    public long getIdPsg() {
         return idPsg;
     }
 
-    public void setIdPsg(int idPsg) {
+    public void setIdPsg(long idPsg) {
         this.idPsg = idPsg;
     }
 
