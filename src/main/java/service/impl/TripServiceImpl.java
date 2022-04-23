@@ -1,5 +1,7 @@
 package service.impl;
 
+import dao.TripDao;
+import dao.impl.TripDaoImpl;
 import model.Trip;
 import service.TripService;
 
@@ -7,14 +9,18 @@ import java.util.List;
 import java.util.Set;
 
 public class TripServiceImpl implements TripService {
+
+    private TripDaoImpl tdi = new TripDaoImpl();
+
     @Override
-    public Trip getById(long id) {
-        return null;
+    public Trip getById(int id) {
+        return tdi.getTripById(id);
     }
 
     @Override
     public Set<Trip> getAll() {
-        return null;
+
+        return tdi.getAll();
     }
 
     @Override
@@ -23,18 +29,20 @@ public class TripServiceImpl implements TripService {
     }
 
     @Override
-    public Trip save(Trip passenger) {
-        return null;
+    public void save(Trip passenger) {
+        tdi.createTrip(passenger);
     }
 
     @Override
-    public Trip update(Trip passenger) {
-        return null;
+    public void update(int tripId, Trip passenger) {
+
+        tdi.update(tripId, passenger);
     }
 
     @Override
-    public void delete(long tripId) {
+    public void delete(int tripId) {
 
+        tdi.deleteById(tripId);
     }
 
     @Override

@@ -7,21 +7,21 @@ import java.util.*;
 
 public interface PassengerService {
 
-    Passenger getById(long id);
+    Passenger getById(int id);
 
     Set<Passenger> getAll();
 
     Set<Passenger> get(int offset, int perPage, String sort);
 
-    Passenger save(Passenger passenger);
+    void save(Passenger passenger);
 
-    Passenger update(Passenger passenger);
+    void update(int id, Passenger passenger);
 
-    void delete(long passengerId);
+    void delete(int passengerId);
 
-    List<Passenger> getPassengersOfTrip(long tripNumber);
+    List<Passenger> getPassengersOfTrip(int tripNumber);
 
     void registerTrip(Trip trip, Passenger passenger);
 
-    void cancelTrip(long passengerId, long tripNumber);
+    void cancelTrip(int passengerId, int tripNumber);
 }

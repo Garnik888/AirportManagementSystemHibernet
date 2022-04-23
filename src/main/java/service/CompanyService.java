@@ -6,16 +6,16 @@ import java.util.Set;
 
 public interface CompanyService {
 
-    Company getById(long id);
+    Company getById(int id);
 
     Set<Company> getAll();
 
     Set<Company> get(int offset, int perPage, String sort);
 
-    Company save(Company company);
+    void save(Company company);
 
-    Company update(Company company);
+    void update(int id, Company company);
 
-    void delete(long companyId);
+    void delete(int companyId);
 
 }

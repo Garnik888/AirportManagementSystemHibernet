@@ -9,6 +9,9 @@ public class Passenger {
     private String name;
     private String phone;
 
+    public Passenger() {
+
+    }
     public Passenger(long idAddress, String name, String phone) {
         this.idAddress = idAddress;
         this.name = name;

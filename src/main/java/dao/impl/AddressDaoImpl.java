@@ -25,8 +25,8 @@ public class AddressDaoImpl implements AddressDao {
         try {
             statement = connection.createStatement();
             statement.execute(query);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println("Duplicate");;
         } finally {
             try {
                 if (statement != null) {

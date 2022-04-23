@@ -9,6 +9,10 @@ public class Company {
     private String companyName;
     private LocalDate founding_date;
 
+    public Company() {
+
+    }
+
     public Company(String companyName, LocalDate founding_date) {
         this.companyName = companyName;
         this.founding_date = founding_date;

@@ -1,4 +1,3 @@
-name,phone,country,city
 Oliviero Robertacci,595-519-3487,Brazil,São Gabriel
 Jeffrey Engel,704-332-8664,Sweden,Finspång
 Humbert Bonner,361-176-3624,Gambia,Baro Kunda

@@ -8,33 +8,41 @@ import java.util.Set;
 
 
 public class CompanyServiceImpl implements CompanyService {
-    CompanyDaoImpl cdi=new CompanyDaoImpl();
+    private CompanyDaoImpl cdi = new CompanyDaoImpl();
+
     @Override
-    public Company getById(long id) { return null;
+    public Company getById(int id) {
+
+        return cdi.getCompanyById(id);
     }
 
     @Override
     public Set<Company> getAll() {
-        return null;
+
+        return cdi.getAll();
     }
 
     @Override
     public Set<Company> get(int offset, int perPage, String sort) {
+
         return null;
     }
 
     @Override
-    public Company save(Company company) {
-        return null;
+    public void save(Company company) {
+
+        cdi.createCompany(company);
     }
 
     @Override
-    public Company update(Company company) {
-        return null;
+    public void update(int compId, Company company) {
+
+        cdi.update(compId,company);
     }
 
     @Override
-    public void delete(long companyId) {
+    public void delete(int companyId) {
 
+        cdi.deleteById(companyId);
     }
 }
