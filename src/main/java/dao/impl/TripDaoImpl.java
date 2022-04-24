@@ -16,8 +16,9 @@ public class TripDaoImpl implements TripDao {
                 DatabaseConnectionService.DB_INSTANCE.createConnection();
 
         String query =
-                "INSERT INTO Trip (comp_id,plane,town_from,town_to,time_out, time_in)" +
+                "INSERT INTO Trip (id,comp_id,plane,town_from,town_to,time_out, time_in)" +
                         " VALUES ('" +
+                        trip.getId() + "', '" +
                         trip.getIdComp() + "', '" +
                         trip.getPlane() + "', '" +
                         trip.getTownFrom() + "', '" +
@@ -26,6 +27,7 @@ public class TripDaoImpl implements TripDao {
                         trip.getTimeIn() + "');";
 
         Statement statement = null;
+
         try {
             assert connection != null;
             statement = connection.createStatement();
@@ -75,8 +77,8 @@ public class TripDaoImpl implements TripDao {
                 preparedStatement.executeUpdate();
 
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -85,12 +87,13 @@ public class TripDaoImpl implements TripDao {
         Connection connection =
                 DatabaseConnectionService.DB_INSTANCE.createConnection();
         try {
+            assert connection != null;
             Statement statement = connection.createStatement();
             String query = "DELETE FROM Trip WHERE id = " + id + ";";
             statement.execute(query);
             statement.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -103,6 +106,7 @@ public class TripDaoImpl implements TripDao {
         ResultSet resultSet;
         Trip trip = null;
         try {
+            assert connection != null;
             preparedStatement = connection.prepareStatement(
                     "SELECT * FROM Trip WHERE id = ?"
             );
@@ -113,8 +117,8 @@ public class TripDaoImpl implements TripDao {
 
             if (resultSet.next()) {
                 trip = new Trip(
-                        resultSet.getInt("id"),
-                        resultSet.getInt("comp_id"),
+                        resultSet.getLong("id"),
+                        resultSet.getLong("comp_id"),
                         resultSet.getString("plane"),
                         resultSet.getString("town_from"),
                         resultSet.getString("town_to"),
@@ -123,12 +127,13 @@ public class TripDaoImpl implements TripDao {
 
                 );
             }
-        } catch (SQLException throwables) {
+        } catch (SQLException e) {
             System.out.println("Wrong query for Trip with id=" + id);
         } finally {
             try {
+                assert connection != null;
                 connection.close();
-            } catch (SQLException throwables) {
+            } catch (SQLException e) {
                 System.out.println("Connection cannot close");
             }
         }
@@ -140,34 +145,37 @@ public class TripDaoImpl implements TripDao {
     public Set<Trip> getAll() {
         Set<Trip> tripses = null;
         try (Connection connection = DatabaseConnectionService
-                .DB_INSTANCE.createConnection();
-             Statement statement = connection.createStatement();
-             ResultSet resultSet =
-                     statement.executeQuery(
-                             "SELECT * FROM Trip"
-                     )
+                .DB_INSTANCE.createConnection()
         ) {
-            tripses = new HashSet<>();
+            assert connection != null;
+            try (Statement statement = connection.createStatement();
+                 ResultSet resultSet =
+                         statement.executeQuery(
+                                 "SELECT * FROM Trip"
+                         )
+            ) {
+                tripses = new HashSet<>();
 
-           Trip trip;
-            while (resultSet.next()) {
-                trip = new Trip(
-                        resultSet.getInt("id"),
-                        resultSet.getInt("comp_id"),
-                        resultSet.getString("plane"),
-                        resultSet.getString("town_from"),
-                        resultSet.getString("town_to"),
-                        LocalTime.parse(resultSet.getTime("time_out").toString()),
-                        LocalTime.parse(resultSet.getTime("time_in").toString())
-                );
+                Trip trip;
+                while (resultSet.next()) {
+                    trip = new Trip(
+                            resultSet.getInt("id"),
+                            resultSet.getInt("comp_id"),
+                            resultSet.getString("plane"),
+                            resultSet.getString("town_from"),
+                            resultSet.getString("town_to"),
+                            LocalTime.parse(resultSet.getTime("time_out").toString()),
+                            LocalTime.parse(resultSet.getTime("time_in").toString())
+                    );
 
-                tripses.add(trip);
+                    tripses.add(trip);
+                }
+
             }
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
         return tripses;
     }
-    }
+}

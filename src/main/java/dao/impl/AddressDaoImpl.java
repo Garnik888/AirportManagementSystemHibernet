@@ -23,6 +23,7 @@ public class AddressDaoImpl implements AddressDao {
 
         Statement statement = null;
         try {
+            assert connection != null;
             statement = connection.createStatement();
             statement.execute(query);
         } catch (SQLException e) {
@@ -35,8 +36,8 @@ public class AddressDaoImpl implements AddressDao {
                 if (connection != null) {
                     connection.close();
                 }
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -62,8 +63,8 @@ public class AddressDaoImpl implements AddressDao {
                 preparedStatement.executeUpdate();
 
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -72,6 +73,7 @@ public class AddressDaoImpl implements AddressDao {
         Connection connection =
                 DatabaseConnectionService.DB_INSTANCE.createConnection();
         try {
+            assert connection != null;
             Statement statement = connection.createStatement();
             String query = "DELETE FROM Address WHERE id = " + id + ";";
             statement.execute(query);
@@ -90,6 +92,7 @@ public class AddressDaoImpl implements AddressDao {
         ResultSet resultSet;
         Address address = null;
         try {
+            assert connection != null;
             preparedStatement = connection.prepareStatement(
                     "SELECT * FROM Address WHERE id = ?"
             );
@@ -99,7 +102,7 @@ public class AddressDaoImpl implements AddressDao {
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 address = new Address(
-                        resultSet.getInt("id"),
+                        resultSet.getLong("id"),
                         resultSet.getString("country"),
                         resultSet.getString("city")
                 );
@@ -109,8 +112,9 @@ public class AddressDaoImpl implements AddressDao {
             System.out.println("Wrong query for Address with id=" + id);
         } finally {
             try {
+                assert connection != null;
                 connection.close();
-            } catch (SQLException throwables) {
+            } catch (SQLException e) {
                 System.out.println("Connection cannot close");
             }
         }
@@ -123,28 +127,31 @@ public class AddressDaoImpl implements AddressDao {
 
         Set<Address> addreses = null;
         try (Connection connection = DatabaseConnectionService
-                .DB_INSTANCE.createConnection();
-             Statement statement = connection.createStatement();
-             ResultSet resultSet =
-                     statement.executeQuery(
-                             "SELECT * FROM Address"
-                     )
+                .DB_INSTANCE.createConnection()
         ) {
-            addreses = new HashSet<>();
+            assert connection != null;
+            try (Statement statement = connection.createStatement();
+                 ResultSet resultSet =
+                         statement.executeQuery(
+                                 "SELECT * FROM Address"
+                         )
+            ) {
+                addreses = new HashSet<>();
 
-            Address address;
-            while (resultSet.next()) {
-                address = new Address(
-                        resultSet.getInt("id"),
-                        resultSet.getString("country"),
-                        resultSet.getString("city")
-                );
+                Address address;
+                while (resultSet.next()) {
+                    address = new Address(
+                            resultSet.getLong("id"),
+                            resultSet.getString("country"),
+                            resultSet.getString("city")
+                    );
 
-                addreses.add(address);
+                    addreses.add(address);
+                }
+
             }
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
         return addreses;

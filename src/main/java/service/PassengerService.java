@@ -1,5 +1,6 @@
 package service;
 
+import model.PassInTrip;
 import model.Passenger;
 import model.Trip;
 
@@ -7,7 +8,7 @@ import java.util.*;
 
 public interface PassengerService {
 
-    Passenger getById(int id);
+    Passenger getById(long id);
 
     Set<Passenger> getAll();
 
@@ -15,13 +16,13 @@ public interface PassengerService {
 
     void save(Passenger passenger);
 
-    void update(int id, Passenger passenger);
+    void update(long id, Passenger passenger);
 
-    void delete(int passengerId);
+    void delete(long passengerId);
 
-    List<Passenger> getPassengersOfTrip(int tripNumber);
+    List<Passenger> getPassengersOfTrip(long tripNumber);
 
-    void registerTrip(Trip trip, Passenger passenger);
+    void registerTrip(PassInTrip passInTrip);
 
-    void cancelTrip(int passengerId, int tripNumber);
+    void cancelTrip(long passengerId, long tripNumber);
 }

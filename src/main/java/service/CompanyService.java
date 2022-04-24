@@ -6,7 +6,7 @@ import java.util.Set;
 
 public interface CompanyService {
 
-    Company getById(int id);
+    Company getById(long id);
 
     Set<Company> getAll();
 
@@ -14,8 +14,8 @@ public interface CompanyService {
 
     void save(Company company);
 
-    void update(int id, Company company);
+    void update(long id, Company company);
 
-    void delete(int companyId);
+    void delete(long companyId);
 
 }

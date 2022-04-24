@@ -24,10 +24,11 @@ public class PassengerDaoImpl implements PassengerDao {
 
         Statement statement = null;
         try {
+            assert connection != null;
             statement = connection.createStatement();
             statement.execute(query);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         } finally {
             try {
                 if (statement != null) {
@@ -36,8 +37,8 @@ public class PassengerDaoImpl implements PassengerDao {
                 if (connection != null) {
                     connection.close();
                 }
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -65,8 +66,8 @@ public class PassengerDaoImpl implements PassengerDao {
                 preparedStatement.executeUpdate();
 
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -75,12 +76,13 @@ public class PassengerDaoImpl implements PassengerDao {
         Connection connection =
                 DatabaseConnectionService.DB_INSTANCE.createConnection();
         try {
+            assert connection != null;
             Statement statement = connection.createStatement();
             String query = "DELETE FROM Passenger WHERE id = " + id + ";";
             statement.execute(query);
             statement.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -93,6 +95,7 @@ public class PassengerDaoImpl implements PassengerDao {
         ResultSet resultSet;
         Passenger passenger = null;
         try {
+            assert connection != null;
             preparedStatement = connection.prepareStatement(
                     "SELECT * FROM Passenger WHERE id = ?"
             );
@@ -102,8 +105,8 @@ public class PassengerDaoImpl implements PassengerDao {
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 passenger = new Passenger(
-                        resultSet.getInt("id"),
-                        resultSet.getInt("address_id"),
+                        resultSet.getLong("id"),
+                        resultSet.getLong("address_id"),
                         resultSet.getString("pass_name"),
                         resultSet.getString("pass_phone")
 
@@ -114,6 +117,7 @@ public class PassengerDaoImpl implements PassengerDao {
             System.out.println("Wrong query for Passenger with id=" + id);
         } finally {
             try {
+                assert connection != null;
                 connection.close();
             } catch (SQLException e) {
                 System.out.println("Connection cannot close");
@@ -127,28 +131,31 @@ public class PassengerDaoImpl implements PassengerDao {
     public Set<Passenger> getAll() {
         Set<Passenger> passengeres = null;
         try (Connection connection = DatabaseConnectionService
-                .DB_INSTANCE.createConnection();
-             Statement statement = connection.createStatement();
-             ResultSet resultSet =
-                     statement.executeQuery(
-                             "SELECT * FROM Passenger"
-                     )
+                .DB_INSTANCE.createConnection()
         ) {
-            passengeres = new HashSet<>();
+            assert connection != null;
+            try (Statement statement = connection.createStatement();
+                 ResultSet resultSet =
+                         statement.executeQuery(
+                                 "SELECT * FROM Passenger"
+                         )
+            ) {
+                passengeres = new HashSet<>();
 
-            Passenger passenger;
-            while (resultSet.next()) {
-                passenger= new Passenger(
-                        resultSet.getInt("id"),
-                        resultSet.getInt("address_id"),
-                        resultSet.getString("pass_name"),
-                        resultSet.getString("pass_phone")
+                Passenger passenger;
+                while (resultSet.next()) {
+                    passenger= new Passenger(
+                            resultSet.getLong("id"),
+                            resultSet.getLong("address_id"),
+                            resultSet.getString("pass_name"),
+                            resultSet.getString("pass_phone")
 
-                );
+                    );
 
-                passengeres.add(passenger);
+                    passengeres.add(passenger);
+                }
+
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -156,4 +163,3 @@ public class PassengerDaoImpl implements PassengerDao {
         return passengeres;
     }
     }
-

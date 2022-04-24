@@ -6,7 +6,7 @@ import java.util.*;
 
 public interface TripService {
 
-    Trip getById(int id);
+    Trip getById(long id);
 
     Set<Trip> getAll();
 
@@ -14,9 +14,9 @@ public interface TripService {
 
     void save(Trip passenger);
 
-    void update(int id, Trip passenger);
+    void update(long id, Trip passenger);
 
-    void delete(int tripId);
+    void delete(long tripId);
 
     List<Trip> getTripsFrom(String city);
 

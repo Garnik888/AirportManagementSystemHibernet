@@ -14,6 +14,10 @@ public class Trip {
     private LocalTime timeOut;
     private LocalTime timeIn;
 
+    public Trip() {
+
+    }
+
     public Trip(long idComp, String plane,
                 String townFrom, String townTo,
                 LocalTime timeOut, LocalTime timeIn) {

@@ -24,10 +24,11 @@ public class CompanyDaoImpl implements CompanyDao {
 
         Statement statement = null;
         try {
+            assert connection != null;
             statement = connection.createStatement();
             statement.execute(query);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         } finally {
             try {
                 if (statement != null) {
@@ -36,8 +37,8 @@ public class CompanyDaoImpl implements CompanyDao {
                 if (connection != null) {
                     connection.close();
                 }
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -73,6 +74,7 @@ public class CompanyDaoImpl implements CompanyDao {
         Connection connection =
                 DatabaseConnectionService.DB_INSTANCE.createConnection();
         try {
+            assert connection != null;
             Statement statement = connection.createStatement();
             String query = "DELETE FROM Company WHERE id = " + id + ";";
             statement.execute(query);
@@ -91,6 +93,7 @@ public class CompanyDaoImpl implements CompanyDao {
         ResultSet resultSet;
         Company company = null;
         try {
+            assert connection != null;
             preparedStatement = connection.prepareStatement(
                     "SELECT * FROM Company WHERE id = ?"
             );
@@ -100,7 +103,7 @@ public class CompanyDaoImpl implements CompanyDao {
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 company = new Company(
-                        resultSet.getInt("id"),
+                        resultSet.getLong("id"),
                         resultSet.getString("company_name"),
                         LocalDate.parse(resultSet.getDate("founding_date").toString())
                 );
@@ -110,6 +113,7 @@ public class CompanyDaoImpl implements CompanyDao {
             System.out.println("Wrong query for Company with id=" + id);
         } finally {
             try {
+                assert connection != null;
                 connection.close();
             } catch (SQLException e) {
                 System.out.println("Connection cannot close");
@@ -123,28 +127,31 @@ public class CompanyDaoImpl implements CompanyDao {
     public Set<Company> getAll() {
         Set<Company> companies = null;
         try (Connection connection = DatabaseConnectionService
-                .DB_INSTANCE.createConnection();
-             Statement statement = connection.createStatement();
-             ResultSet resultSet =
-                     statement.executeQuery(
-                             "SELECT * FROM Company"
-                     )
+                .DB_INSTANCE.createConnection()
         ) {
-            companies = new HashSet<>();
+            assert connection != null;
+            try (Statement statement = connection.createStatement();
+                 ResultSet resultSet =
+                         statement.executeQuery(
+                                 "SELECT * FROM Company"
+                         )
+            ) {
+                companies = new HashSet<>();
 
-            Company company;
-            while (resultSet.next()) {
-                company = new Company(
-                        resultSet.getInt("id"),
-                        resultSet.getString("company_name"),
-                        LocalDate.parse(resultSet.getDate("founding_date").toString())
-                );
+                Company company;
+                while (resultSet.next()) {
+                    company = new Company(
+                            resultSet.getLong("id"),
+                            resultSet.getString("company_name"),
+                            LocalDate.parse(resultSet.getDate("founding_date").toString())
+                    );
 
-                companies.add(company);
+                    companies.add(company);
+                }
+
             }
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
         return companies;
