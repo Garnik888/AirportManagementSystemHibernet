@@ -25,8 +25,8 @@ public class AMS_app {
 //        creatDBFromFile.creatComp("src/main/java/resource/companies.txt");
 //        creatDBFromFile.creatAddress("src/main/java/resource/passengers.txt");
 //        creatDBFromFile.creatPassenger("src/main/java/resource/passengers.txt");
-//        creatDBFromFile.creatTrip("src/main/java/resource/trip.txt");
-//        creatDBFromFile.creatPassInTrip("src/main/java/resource/pass_in_trip.txt");
+//        creatDBFromFile.creatTrip("src/main/java/resource/trip1.txt");
+        creatDBFromFile.creatPassInTrip("src/main/java/resource/pass_in_trip1.txt");
 
 
     }

@@ -179,6 +179,7 @@ public class CreatDBFromFile {
                 System.out.println(line);
                 words = line.split(",");
 
+                System.out.println(line);
 
                 passInTrip.setIdTrip(Long.parseLong(words[0]));
                 passInTrip.setIdPsg(Long.parseLong(words[1]));
