@@ -105,10 +105,11 @@ public class CreatDBFromFile {
 
         PassengerDaoImpl pdi = new PassengerDaoImpl();
         Passenger passenger = new Passenger();
-        String[] words;
-        String line;
 
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+
+            String[] words;
+            String line;
 
             while (br.ready()) {
 
@@ -199,7 +200,7 @@ public class CreatDBFromFile {
         Connection connection =
                 DatabaseConnectionService.DB_INSTANCE.createConnection();
 
-        PreparedStatement ps;
+        PreparedStatement ps=null;
         ResultSet rs;
         Long id = 0L;
 
@@ -207,8 +208,8 @@ public class CreatDBFromFile {
             assert connection != null;
             ps = connection.prepareStatement("SELECT id FROM address WHERE country = ? AND city = ?");
 
-            ps.setNString(1, country);
-            ps.setNString(2, city);
+            ps.setNString(1, country.replace(" ' ",""));
+            ps.setNString(2, city.replace(" ' ",""));
 
             rs = ps.executeQuery();
             if (rs.next()) {
