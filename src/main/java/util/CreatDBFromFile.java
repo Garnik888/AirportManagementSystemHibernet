@@ -115,7 +115,7 @@ public class CreatDBFromFile {
                 line = br.readLine();
 
                 if (line.contains("'")) {
-                    line = line.replace("'", "՛");
+                    line = line.replaceAll("'", "՛");
                 }
                 words = line.split(",");
                 passenger.setName(words[0]);
@@ -201,7 +201,7 @@ public class CreatDBFromFile {
 
         PreparedStatement ps;
         ResultSet rs;
-        Long id = null;
+        Long id = 0L;
 
         try {
             assert connection != null;
