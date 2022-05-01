@@ -1,40 +1,23 @@
 package model;
 
+import org.hibernate.annotations.NaturalId;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
+@Entity
+@Table(name = "pass_in_trip")
 public class PassInTrip {
 
-    private long idTrip;
-    private long idPsg;
+    @Id()
+    @Column(name = "date", nullable = false)
     private LocalDate date;
+    @Column(name = "place", nullable = false)
     private String place;
 
     public PassInTrip() {
 
-    }
-
-    public PassInTrip(long idTrip, long idPsg, LocalDate date, String place) {
-        this.idTrip = idTrip;
-        this.idPsg = idPsg;
-        this.date = date;
-        this.place = place;
-    }
-
-    public long getIdTrip() {
-        return idTrip;
-    }
-
-    public void setIdTrip(long idTrip) {
-        this.idTrip = idTrip;
-    }
-
-    public long getIdPsg() {
-        return idPsg;
-    }
-
-    public void setIdPsg(long idPsg) {
-        this.idPsg = idPsg;
     }
 
     public LocalDate getDate() {
@@ -58,19 +41,17 @@ public class PassInTrip {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PassInTrip that = (PassInTrip) o;
-        return idTrip == that.idTrip && idPsg == that.idPsg && Objects.equals(date, that.date) && Objects.equals(place, that.place);
+        return Objects.equals(date, that.date) && Objects.equals(place, that.place);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idTrip, idPsg, date, place);
+        return Objects.hash(date, place);
     }
 
     @Override
     public String toString() {
         return "PassInTrip{" +
-                "idTrip=" + idTrip +
-                ", idPsg=" + idPsg +
                 ", date=" + date +
                 ", place='" + place + '\'' +
                 "}\n";

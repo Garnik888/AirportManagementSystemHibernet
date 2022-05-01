@@ -1,6 +1,7 @@
 package dao;
 
 import model.Address;
+import org.hibernate.SessionFactory;
 
 import java.util.Set;
 
