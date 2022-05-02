@@ -178,7 +178,6 @@ Joannes Swaden,364-810-9753,Niger,Tessaoua
 Ana O'Henehan,692-873-2755,Portugal,Cova da Iria
 Wainwright MacTrusty,210-618-7961,China,Cangqian
 Josi Mostyn,814-794-7292,Indonesia,Gambut
-Bogey Conley,591-843-4039,Sweden,Ljungskile
 Leia Vittori,981-392-0122,China,Jincang
 Ursa Pearcy,730-279-4557,Russia,Goyty
 Marianne Levi,668-330-4585,Sri Lanka,Kadugannawa
@@ -255,7 +254,6 @@ Krishnah Tabram,368-605-8805,Peru,Curibaya
 Glyn Walentynowicz,752-439-2011,China,Xiaoqi
 Dory Ganniclifft,286-429-1059,Russia,Dubki
 Pietrek Hamber,551-517-3289,China,Ala
-Dione Gudgin,284-967-1109,Sweden,Falun
 Veradis Greensides,984-356-3099,Peru,Buenos Aires
 Darby Farrey,933-258-9340,Japan,Iwatsuki
 Fina Dommerque,144-202-3372,Estonia,Põltsamaa
@@ -338,7 +336,6 @@ Tommy Gunney,614-347-1707,Philippines,Dungon
 Bonita Adie,402-218-6059,Indonesia,Rukem
 Mirabel Maffulli,883-714-6436,Canada,Torbay
 Benyamin Leavens,557-902-0603,China,Sanxi
-Rabi Constant,367-603-8362,Brazil,Penedo
 Loydie Izac,400-764-3678,Vietnam,Yên Mỹ
 Neil Ort,864-263-9942,Thailand,Bang Kruai
 Bryce Emanuelli,933-657-1528,China,Sandu
@@ -494,7 +491,6 @@ Tanya Jedryka,984-718-2690,Brazil,Lagoa do Itaenga
 Maurise Rusk,929-921-6677,Netherlands,Brunssum
 Samuel Maria,614-382-8273,Russia,Detchino
 Jenilee Tacker,402-852-1645,United States,Omaha
-Jorry Carrodus,473-602-7939,Sweden,Finspång
 Kandace Podmore,954-691-8839,Bolivia,Mairana
 Brendon Syms,205-900-9236,Mexico,Rafael Hernandez Ochoa
 Tull Grimsdell,596-458-6266,China,Yeniugou
@@ -544,7 +540,6 @@ Lettie Mitham,112-154-6147,Mongolia,Mardzad
 Leah Bartolic,153-557-6754,Niger,Zinder
 Shurlock Mirrlees,643-123-4762,Argentina,Quitilipi
 Staford Turfs,630-497-6164,Indonesia,Dinititi
-Sheba Cranstoun,738-193-7164,Philippines,San Miguel
 Britta Lammert,438-679-8259,China,Chadian
 Charity Woloschinski,362-768-8801,Brazil,Aracruz
 Whittaker Flott,690-679-4553,China,Quma
@@ -555,7 +550,6 @@ Jillane Eilhermann,752-631-2473,China,Meixi
 Augustina Daltrey,976-444-0369,Thailand,Sirindhorn
 Grantley Aujean,783-779-9677,China,Honghualiangzi
 Anabelle Snelling,906-262-2389,Portugal,Avanca
-Paulo Brogan,218-237-4981,Sweden,Tyresö
 Aurore Boam,842-731-4471,Indonesia,Lewolere
 Caril Piche,178-790-9206,Indonesia,Sukasada
 Sheppard Evetts,655-306-0296,Indonesia,Karara
@@ -593,7 +587,6 @@ Padraic Prise,693-803-8228,China,Liutangting
 Lucilia Kimblin,452-751-1230,Indonesia,Purbalingga
 Genevieve Shimwall,352-502-3149,Brazil,Mirandopólis
 Teodoro Hefforde,581-327-5775,Thailand,Yasothon
-Ailene Cullivan,129-845-2204,China,Songshan
 Wyatt Sterland,401-283-9840,Russia,Muranovo
 Clarke Baildon,792-259-7984,China,Maoping
 Garnette McClary,985-436-2989,Ukraine,Velyka Bilozerka
@@ -612,7 +605,6 @@ Lazarus Hugnin,915-979-7482,China,Magitang
 Sargent Harring,831-224-1083,China,Hengtang
 Natala Gimber,506-862-9811,China,Baiyang
 Christa Le Galle,918-872-2673,China,Majia
-Almire Doree,319-392-0567,Sweden,Falun
 Dag Gollin,449-453-8383,Brazil,Franco da Rocha
 Herve Lambotin,535-675-9280,Japan,Kobe
 Annalise Sooley,953-863-0271,Russia,Burmakino
@@ -636,7 +628,6 @@ Christean Harmstone,605-897-7413,Indonesia,Sukowiryo
 Cherice Paur,156-629-7557,Poland,Garwolin
 Isador Knight,927-668-6934,Russia,Tbilisskaya
 Ina Tibalt,127-361-3070,Thailand,Nam Khun
-Gris Dmitrichenko,912-444-4298,Sweden,Solna
 Barrie Hugnot,639-565-3628,China,Dehang
 Miguel Purslow,223-536-2800,Poland,Pawłosiów
 Dasha Taverner,102-743-3762,Venezuela,Lecherías
@@ -684,7 +675,6 @@ Bartholomeus Parsonson,468-827-1753,Iran,Bandar-e Lengeh
 Nikita Paulich,604-963-1193,Liberia,Gbarnga
 Jenelle Werrilow,692-984-6922,Poland,Kęsowo
 Ester Giordano,824-715-0341,Philippines,Conel
-Dorthea Galbraeth,649-979-9397,China,Jixing
 Chaddie MacGaughie,611-184-3182,Poland,Chojnice
 Jase Fanner,472-617-3583,Dominican Republic,Las Matas de Santa Cruz
 Amelina Briereton,567-219-4509,Czech Republic,Velké Bílovice
@@ -727,10 +717,9 @@ Vitia Freeborn,379-849-1087,Indonesia,Pajung
 Therine Clows,502-797-2338,Czech Republic,Klášter
 Jordana Carek,209-702-0299,Syria,Sahnaiya
 Malia Calkin,349-289-3226,Indonesia,Pamotan
-Gusella Ketts,800-975-6839,Indonesia,Cinyawang
+Gusella Ketts,800-975-6839,Indonesia,Cinyawang+
 Harcourt Danielsen,930-817-6082,Albania,Lukovë
 Milo Goldston,926-608-8038,Colombia,La Jagua de Ibirico
-Marijo Bennett,873-271-3685,Brazil,Salvador
 Karlyn Fensome,819-594-4043,Brazil,Três Corações
 Berty Seckington,854-300-4947,Macedonia,Ilinden
 Austin Dupoy,168-244-8479,Colombia,San Carlos
@@ -813,7 +802,6 @@ Berenice Castiblanco,842-373-2932,Sweden,Järna
 Papagena Minear,609-674-2017,Greece,Palekastro
 Cathe Persence,334-224-7577,Indonesia,Sukosari
 Austin Phidgin,226-587-1056,Andorra,les Escaldes
-Ulrica Moukes,647-845-1131,Poland,Ostrowsko
 Ansley Heberden,708-804-8606,Russia,Mullovka
 Nickolas Maxwale,841-150-5637,China,Wanjiazhuang
 Kimberlyn Lalley,757-510-1372,China,Suyang
@@ -826,10 +814,8 @@ Darin Bonefant,906-227-9775,Argentina,Carhué
 Minnie Gipson,877-957-2437,France,Guérande
 Nichol Winman,945-696-2600,Albania,Lunik
 Ethyl Scamadine,204-545-9611,China,Beidajie
-Emmery Le Fleming,170-344-5246,Brazil,Parobé
 Joyous Yarker,214-560-8133,United States,Dallas
 Pollyanna Abbott,946-561-3361,Japan,Toyama-shi
-Thatch Stone Fewings,250-345-2940,China,Qufu
 Catlin Dinsmore,779-355-1184,Indonesia,Mayong
 Naomi Pigford,381-233-0565,Russia,Nyandoma
 Tabbi Breitler,363-656-5834,Madagascar,Ambovombe
@@ -856,8 +842,7 @@ Diana Stovine,950-450-4589,Germany,Lübeck
 Merv Mundy,953-361-7183,Sweden,Deje
 Killy McCrachen,753-144-6677,Peru,Chugur
 Kalvin Kingstne,271-974-7126,Vietnam,Phu Loc
-Pernell Abbotson,513-755-8745,Thailand,Udon Thani
-Ardine Hallbord,584-759-0209,France,Saint-Maurice-l'Exil
+Ardine Hallbord,584-759-0209,France,Saint-Maurice-l
 Jase Kinset,544-426-8133,Poland,Lisia Góra
 Der Bleackley,220-727-9992,Czech Republic,Havlíčkův Brod
 Arnie Cartin,772-893-9380,Paraguay,Fram
@@ -909,7 +894,6 @@ Christina Bowhay,943-289-8944,China,Zhonghe
 Percival Eastabrook,244-319-7266,Sweden,Järfälla
 Lindi Izard,564-941-5760,Brazil,Matozinhos
 Dmitri Burgiss,701-243-9985,Portugal,Lameira
-Terese Delahunt,221-131-7021,Portugal,Cabanas
 Shela Filson,145-365-7836,Brazil,Astorga
 Loise Pettyfar,284-221-3406,Egypt,Qinā
 Cori Tombleson,162-435-5284,Cuba,Banes
@@ -921,7 +905,6 @@ Guthrie Rablen,195-931-3337,Brazil,Ji Paraná
 Rhetta Favel,241-252-1351,Sri Lanka,Kandy
 Broddie Simonite,923-548-6988,China,Nanshan
 Tait Witcherley,491-104-4122,Sweden,Kalmar
-Ruth Reynalds,764-559-1454,Colombia,Puerto Santander
 Maud Spiers,680-159-1319,Czech Republic,Bakov nad Jizerou
 Benji Tizzard,340-607-5139,China,Shaogongzhuang
 Damita Westoll,648-982-8019,Indonesia,Bendo
@@ -934,7 +917,6 @@ Shane Kennea,163-446-2690,Thailand,Khon San
 Leoine Cornelissen,939-203-7389,Poland,Pawonków
 Kev Tosspell,804-399-5590,Paraguay,San Pedro del Paraná
 Hobie Childes,367-118-6898,Colombia,Bogotá
-Vanya MacSwayde,890-596-6988,Indonesia,Tlogotunggal
 Pascale Elcombe,638-732-0938,Indonesia,Awayan
 Coralyn Tireman,363-718-9370,Germany,Berlin
 Ki Meineken,869-351-3014,Palestinian Territory,Gaza
@@ -942,7 +924,6 @@ Kin Stillert,673-198-7628,Philippines,Parion
 Diana Surmeyer,627-335-4975,Mongolia,Shireet
 Waylen Birbeck,172-860-6170,Indonesia,Nangalimang
 Aldis Alldridge,657-672-9577,Philippines,Kabacan
-Hogan Klammt,617-928-9872,Colombia,San Carlos
 Harbert Mowen,866-121-0286,Marshall Islands,RMI Capitol
 Yale Paddon,677-307-0398,Ukraine,Apostolove
 Yankee Franken,794-235-4511,Canada,Cowansville
@@ -963,7 +944,6 @@ Trudy Drury,167-144-0556,Lithuania,Daugai
 Donny Gouch,445-397-9940,Indonesia,Isak
 Joachim Fludder,900-284-5068,Venezuela,Mene de Mauroa
 Madelon Flanagan,969-482-3396,Indonesia,Margahayu
-Patrick Stubbins,981-632-7783,Philippines,Kalandagan
 Chryste Abeles,553-588-2160,Peru,Rosaspata
 Had Spellessy,442-126-6569,Cameroon,Edéa
 Ariel Dark,505-526-5451,Argentina,Darwin

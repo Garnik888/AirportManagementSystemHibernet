@@ -27,8 +27,8 @@ public class Trip {
     @Column(name = "time_in", nullable = false)
     private LocalTime timeIn;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "trips")
-    Set<Passenger> passengers = new HashSet<>();
+    @ManyToMany(mappedBy = "trips")
+    private Set<Passenger> passengers = new HashSet<>();
 
     public Trip() {
 
@@ -113,6 +113,7 @@ public class Trip {
                 ", townTo='" + townTo + '\'' +
                 ", timeOut=" + timeOut +
                 ", timeIn=" + timeIn +
+                ", passengers=" + passengers +
                 '}';
     }
 }

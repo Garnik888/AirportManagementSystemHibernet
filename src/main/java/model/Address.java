@@ -1,13 +1,11 @@
 package model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
-@Table(name = "address", uniqueConstraints = {@UniqueConstraint(
-        name = "unique_country_city",columnNames = {"country", "city"})})
+@Table(name = "address", uniqueConstraints =
+@UniqueConstraint(columnNames = {"country", "city"}))
 public class Address {
 
     @Id
@@ -18,8 +16,8 @@ public class Address {
     @Column(name = "city", nullable = false, length = 50)
     private String city;
 
-    @OneToMany(mappedBy = "address", cascade = CascadeType.ALL)
-    private List<Passenger> passengers = new ArrayList<>();
+    @OneToMany(mappedBy = "address", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Set<Passenger> passengers = new HashSet<>();
     public Address() {
 
     }
@@ -48,11 +46,11 @@ public class Address {
         this.city = city;
     }
 
-    public List<Passenger> getPassengers() {
+    public Set<Passenger> getPassengers() {
         return passengers;
     }
 
-    public void setPassengers(List<Passenger> passengers) {
+    public void setPassengers(Set<Passenger> passengers) {
         this.passengers = passengers;
     }
 

@@ -4,6 +4,7 @@ import dao.CompanyDao;
 import model.Company;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import util.HibernateSessionFactoryUtil;
 
 
 import java.sql.*;
@@ -13,20 +14,14 @@ import java.util.Set;
 
 public class CompanyDaoImpl implements CompanyDao {
 
-    private SessionFactory sessionFactory;
-
     public CompanyDaoImpl () {
 
     }
 
-    public CompanyDaoImpl(SessionFactory sessionFactory) {
-
-        this.sessionFactory = sessionFactory;
-    }
     @Override
     public void createCompany(Company company) {
 
-        Session session = sessionFactory.openSession();
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         session.beginTransaction();
         session.save(company);
         session.getTransaction().commit();
@@ -44,8 +39,20 @@ public class CompanyDaoImpl implements CompanyDao {
     }
 
     @Override
-    public Company getCompanyById(long id) {
-        return null;
+    public Company getCompanyById(long id, SessionFactory sessionFactory) {
+        Session session = sessionFactory.openSession();
+        Company company = null;
+        try {
+
+            company= session.get(Company.class, id);
+
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        } finally {
+
+            try {if(session != null) session.close();} catch(Exception ex) {}
+        }
+        return company;
     }
 
     @Override

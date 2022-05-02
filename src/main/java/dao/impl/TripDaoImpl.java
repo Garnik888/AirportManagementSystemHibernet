@@ -2,14 +2,31 @@ package dao.impl;
 
 import dao.TripDao;
 import model.Trip;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import java.util.Set;
 
 public class TripDaoImpl implements TripDao {
 
-    @Override
-    public void createTrip(Trip trip) {
+    private SessionFactory sessionFactory;
 
+    public TripDaoImpl() {
+
+    }
+
+    public TripDaoImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
+    @Override
+    public void createTrip(Trip trip, SessionFactory sessionFactory) {
+
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.save(trip);
+        session.getTransaction().commit();
+        session.close();
     }
 
     @Override

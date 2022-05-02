@@ -5,30 +5,24 @@ import model.Address;
 import org.hibernate.Hibernate;
 import org.hibernate.SessionFactory;
 import org.hibernate.Session;
+import util.HibernateSessionFactoryUtil;
 
 import java.util.Set;
 
 public class AddressDaoImpl implements AddressDao {
 
-   private SessionFactory sessionFactory;
+    public AddressDaoImpl() {
 
-   public AddressDaoImpl() {
-
-   }
-
-   public AddressDaoImpl(SessionFactory sessionFactory) {
-
-       this.sessionFactory = sessionFactory;
-   }
+    }
 
     @Override
-    public void createAddress(Address address) {
+    public void createAddress(Address address, SessionFactory sessionFactory) {
 
-       Session session = sessionFactory.openSession();
-       session.beginTransaction();
-       session.save(address);
-       session.getTransaction().commit();
-       session.close();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.save(address);
+        session.getTransaction().commit();
+        session.close();
     }
 
     @Override
@@ -43,7 +37,8 @@ public class AddressDaoImpl implements AddressDao {
 
     @Override
     public Address getAddressById(long id) {
-        return null;
+
+        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Address.class, id);
     }
 
     @Override

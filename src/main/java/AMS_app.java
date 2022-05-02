@@ -1,21 +1,18 @@
+
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import resource.util.CreatDBFromFile;
+import util.CreatDBFromFile;
+import util.HibernateSessionFactoryUtil;
 
 public class AMS_app {
 
     public static void main(String[] args) {
 
-        Configuration configuration = new Configuration();
-//        configuration.addAnnotatedClass(Address.class);
-//        configuration.addAnnotatedClass(Company.class);
-//        configuration.addAnnotatedClass(Passenger.class);
-//        configuration.addAnnotatedClass(Trip.class);
-//        configuration.addAnnotatedClass(PassInTrip.class);
-//
-        SessionFactory sessionFactory = configuration.buildSessionFactory();
-        CreatDBFromFile creatDBFromFile = new CreatDBFromFile();
-        creatDBFromFile.creatComp("src/main/java/resource/companies.txt", sessionFactory);
+        SessionFactory sessionFactory = HibernateSessionFactoryUtil.getSessionFactory();
 
+        CreatDBFromFile.creatComp("src/main/java/resource/companies.txt", sessionFactory);
+        CreatDBFromFile.creatPassenger("src/main/java/resource/passengers.txt", sessionFactory);
+        CreatDBFromFile.creatTrip("src/main/java/resource/trip1.txt", sessionFactory);
+//        CreatDBFromFile.creatPassInTrip("src/main/java/resource/pass_in_trip.txt", sessionFactory);
     }
 }
