@@ -9,8 +9,6 @@ import java.util.Set;
 
 public class PassengerDaoImpl implements PassengerDao {
 
-    private SessionFactory sessionFactory;
-
     public PassengerDaoImpl() {
 
     }

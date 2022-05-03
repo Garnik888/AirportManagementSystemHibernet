@@ -7,7 +7,7 @@ import java.util.Set;
 
 public interface CompanyDao {
 
-    void createCompany(Company company);
+    void createCompany(Company company, SessionFactory sessionFactory);
 
     void update(long id, Company company);
 

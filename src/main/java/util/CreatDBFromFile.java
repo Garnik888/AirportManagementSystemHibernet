@@ -1,27 +1,26 @@
 package util;
 
+import dao.PassInTripDao;
 import dao.impl.*;
 import model.*;
-import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.sql.SQLIntegrityConstraintViolationException;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
+import java.util.Set;
 
 public class CreatDBFromFile {
 
-    public static void creatComp(String path,SessionFactory sessionFactory) {
+    private static AddressDaoImpl addressDao = new AddressDaoImpl();
+
+    public static void creatComp(String path, SessionFactory sessionFactory) {
 
         CompanyDaoImpl cdi = new CompanyDaoImpl();
-        Company com = new Company();
         String[] words;
         String line;
-        String[] comData;
 
         try (BufferedReader br = new BufferedReader(new FileReader(path))
         ) {
@@ -33,11 +32,14 @@ public class CreatDBFromFile {
                 if (line.contains("'")) {
                     line = line.replace("'", "՛");
                 }
+
+                Company com = new Company();
+
                 words = line.split(",");
                 com.setCompanyName(words[0]);
                 com.setFoundingDate(LocalDate.parse(words[1], DateTimeFormatter.ofPattern("M/d/yyyy")));
 
-                cdi.createCompany(com);
+                cdi.createCompany(com, sessionFactory);
             }
 
         } catch (Exception e) {
@@ -45,38 +47,78 @@ public class CreatDBFromFile {
         }
     }
 
+    public static Set<Address> createAddress(String path, SessionFactory sessionFactory) {
 
-
-    public static void creatPassenger(String path, SessionFactory sessionFactory) {
-
-        PassengerDaoImpl pdi = new PassengerDaoImpl();
-        Passenger passenger = new Passenger();
+        Set<Address> add1 = new HashSet<>();
+        Address address = null;
+        String[] words;
+        String line;
 
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
 
-            String[] words;
-            String line;
-
-            while (br.ready()) {
-
-                line = br.readLine();
-
-                if (line.contains("'")) {
-                    line = line.replaceAll("'", "՛");
+            while (true) {
+                try {
+                    if ((line = br.readLine()) == null) break;
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
-
-                Address address = new Address();
+                line = line.replace("'", "");
                 words = line.split(",");
-                passenger.setName(words[0]);
-                passenger.setPhone(words[1]);
+
+                address = new Address();
+
                 address.setCountry(words[2]);
                 address.setCity(words[3]);
-                passenger.setAddress(address);
 
-                pdi.createPassenger(passenger, sessionFactory);
+                add1.add(address);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return add1;
+    }
+
+    public static void creatPassenger(String path, SessionFactory sessionFactory) {
+
+        Set<Address> setAdd = createAddress(path, sessionFactory);
+
+        Passenger passenger = new Passenger();
+        PassengerDaoImpl passengerDao = new PassengerDaoImpl();
+
+        String line;
+        String[] words;
+
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))) {
+            while (true) {
+                try {
+                    if ((line = bufferedReader.readLine()) == null) break;
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+                if (line.contains("'")) {
+                    line = line.replace("'", "՛");
+                }
+
+                words = line.split(",");
+
+                passenger.setName(words[0]);
+                passenger.setPhone(words[1]);
+
+                Address address = new Address();
+                address.setCountry(words[2]);
+                address.setCity(words[3]);
+
+                for (Address address1 : setAdd) {
+                    if (address1.equals(address)) {
+                        passenger.setAddress(address1);
+                        passengerDao.createPassenger(passenger, sessionFactory);
+                        break;
+                    }
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -115,33 +157,28 @@ public class CreatDBFromFile {
 
     public static void creatPassInTrip(String path, SessionFactory sessionFactory) {
 
-        PassInTripDaoImpl pdi = new PassInTripDaoImpl();
+        PassInTripDao passInTripDao = new PassInTripDaoImpl();
         PassInTrip passInTrip = new PassInTrip();
-
-        try (BufferedReader br = new BufferedReader(new FileReader(path))){
-
-            String [] words;
-            String line;
-
-            while (br.ready()) {
-
-                line = br.readLine();
-                System.out.println(line);
+        String[] words;
+        String line;
+        try (BufferedReader br = new BufferedReader(new FileReader(path))
+        ) {
+            while (true) {
+                try {
+                    if ((line = br.readLine()) == null) break;
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                line = line.replace("'", "");
                 words = line.split(",");
-
-                System.out.println(line);
-
-                PassInTrip.PassInTripId passInTripId = new PassInTrip.PassInTripId(
-                        Long.parseLong(words[1]),
-                        Long.parseLong(words[0]),
-                        LocalDate.parse(words[2].split(" ")[0]));
-
-                passInTrip.setPassInTripId(passInTripId);
+                passInTrip.setTripId(Long.parseLong(words[0]));
+                passInTrip.setPsgId(Long.parseLong(words[1]));
+                passInTrip.setDate(LocalDate.parse(words[2],
+                        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")));
                 passInTrip.setPlace(words[3]);
-
-                pdi.createPassInTrip(passInTrip, sessionFactory);
+                passInTripDao.createPassInTrip(passInTrip, sessionFactory);
+                System.out.println();
             }
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

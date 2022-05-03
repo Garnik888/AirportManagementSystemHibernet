@@ -4,12 +4,7 @@ import dao.CompanyDao;
 import model.Company;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import util.HibernateSessionFactoryUtil;
 
-
-import java.sql.*;
-import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.Set;
 
 public class CompanyDaoImpl implements CompanyDao {
@@ -19,9 +14,9 @@ public class CompanyDaoImpl implements CompanyDao {
     }
 
     @Override
-    public void createCompany(Company company) {
+    public void createCompany(Company company, SessionFactory sessionFactory) {
 
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(company);
         session.getTransaction().commit();
