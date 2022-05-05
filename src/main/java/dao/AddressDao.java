@@ -7,7 +7,7 @@ import java.util.Set;
 
 public interface AddressDao {
 
-    void createAddress(Address address, SessionFactory sessionFactory);
+    void createAddress(Address address);
 
     void update(long id, Address address);
 

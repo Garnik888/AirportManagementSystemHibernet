@@ -1,7 +1,10 @@
 package service.impl;
 
+import dao.PassengerDao;
+import dao.impl.PassengerDaoImpl;
 import model.PassInTrip;
 import model.Passenger;
+import org.hibernate.SessionFactory;
 import service.PassengerService;
 
 import java.util.List;
@@ -9,15 +12,24 @@ import java.util.Set;
 
 public class PassengerServiceImpl implements PassengerService {
 
+    private SessionFactory sessionFactory;
+    private PassengerDao pdi;
+
+    public PassengerServiceImpl(SessionFactory sessionFactory, PassengerDao pdi) {
+        this.sessionFactory = sessionFactory;
+        this.pdi = pdi;
+    }
 
     @Override
     public Passenger getById(long id) {
-        return null;
+
+        return pdi.getPassengerById(id);
     }
 
     @Override
     public Set<Passenger> getAll() {
-        return null;
+
+        return pdi.getAll();
     }
 
     @Override
@@ -28,16 +40,19 @@ public class PassengerServiceImpl implements PassengerService {
     @Override
     public void save(Passenger passenger) {
 
+        pdi.createPassenger(passenger);
     }
 
     @Override
     public void update(long id, Passenger passenger) {
 
+        pdi.update(id, passenger);
     }
 
     @Override
     public void delete(long passengerId) {
 
+        pdi.deleteById(passengerId);
     }
 
     @Override

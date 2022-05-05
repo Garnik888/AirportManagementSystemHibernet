@@ -17,20 +17,14 @@ public class HibernateSessionFactoryUtil {
 
         if (sessionFactory == null) {
 
-            try {
-                Configuration configuration = new Configuration();
-                configuration.addAnnotatedClass(Address.class);
-                configuration.addAnnotatedClass(Company.class);
-                configuration.addAnnotatedClass(Passenger.class);
-                configuration.addAnnotatedClass(Trip.class);
-                configuration.addAnnotatedClass(PassInTrip.class);
+            Configuration configuration = new Configuration();
+            configuration.addAnnotatedClass(Address.class);
+            configuration.addAnnotatedClass(Company.class);
+            configuration.addAnnotatedClass(Passenger.class);
+            configuration.addAnnotatedClass(Trip.class);
+            configuration.addAnnotatedClass(PassInTrip.class);
 
-                sessionFactory = configuration.buildSessionFactory();
-            } catch (Exception e) {
-
-                e.printStackTrace();
-            }
-
+            sessionFactory = configuration.buildSessionFactory();
         }
 
         return sessionFactory;

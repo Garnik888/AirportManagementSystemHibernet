@@ -7,7 +7,7 @@ import java.util.Set;
 
 public interface TripDao {
 
-    void createTrip(Trip trip, SessionFactory sessionFactory);
+    void createTrip(Trip trip);
 
     void update(long id, Trip trip);
 

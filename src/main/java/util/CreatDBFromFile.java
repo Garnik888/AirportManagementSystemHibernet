@@ -14,11 +14,15 @@ import java.util.Set;
 
 public class CreatDBFromFile {
 
-    private static AddressDaoImpl addressDao = new AddressDaoImpl();
+    private SessionFactory sessionFactory;
 
-    public static void creatComp(String path, SessionFactory sessionFactory) {
+    public CreatDBFromFile(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
-        CompanyDaoImpl cdi = new CompanyDaoImpl();
+    public void creatComp(String path) {
+
+        CompanyDaoImpl cdi = new CompanyDaoImpl(sessionFactory);
         String[] words;
         String line;
 
@@ -39,7 +43,7 @@ public class CreatDBFromFile {
                 com.setCompanyName(words[0]);
                 com.setFoundingDate(LocalDate.parse(words[1], DateTimeFormatter.ofPattern("M/d/yyyy")));
 
-                cdi.createCompany(com, sessionFactory);
+                cdi.createCompany(com);
             }
 
         } catch (Exception e) {
@@ -47,10 +51,10 @@ public class CreatDBFromFile {
         }
     }
 
-    public static Set<Address> createAddress(String path, SessionFactory sessionFactory) {
+    public static Set<Address> createAddress(String path) {
 
-        Set<Address> add1 = new HashSet<>();
-        Address address = null;
+        Set<Address> addressSet = new HashSet<>();
+        Address address;
         String[] words;
         String line;
 
@@ -70,20 +74,20 @@ public class CreatDBFromFile {
                 address.setCountry(words[2]);
                 address.setCity(words[3]);
 
-                add1.add(address);
+                addressSet.add(address);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return add1;
+        return addressSet;
     }
 
-    public static void creatPassenger(String path, SessionFactory sessionFactory) {
+    public void creatPassenger(String path) {
 
-        Set<Address> setAdd = createAddress(path, sessionFactory);
+        Set<Address> setAdd = createAddress(path);
 
         Passenger passenger = new Passenger();
-        PassengerDaoImpl passengerDao = new PassengerDaoImpl();
+        PassengerDaoImpl passengerDao = new PassengerDaoImpl(sessionFactory);
 
         String line;
         String[] words;
@@ -112,7 +116,7 @@ public class CreatDBFromFile {
                 for (Address address1 : setAdd) {
                     if (address1.equals(address)) {
                         passenger.setAddress(address1);
-                        passengerDao.createPassenger(passenger, sessionFactory);
+                        passengerDao.createPassenger(passenger);
                         break;
                     }
                 }
@@ -122,10 +126,10 @@ public class CreatDBFromFile {
         }
     }
 
-    public static void creatTrip(String path, SessionFactory sessionFactory) {
+    public void creatTrip(String path) {
 
-        CompanyDaoImpl cdi = new CompanyDaoImpl();
-        TripDaoImpl tdi = new TripDaoImpl();
+        CompanyDaoImpl cdi = new CompanyDaoImpl(sessionFactory);
+        TripDaoImpl tdi = new TripDaoImpl(sessionFactory);
         Trip trip = new Trip();
 
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
@@ -139,7 +143,7 @@ public class CreatDBFromFile {
                 words = line.split(",");
 
                 trip.setId(Long.parseLong(words[0]));
-                Company company = cdi.getCompanyById(Long.parseLong(words[1]), sessionFactory);
+                Company company = cdi.getCompanyById(Long.parseLong(words[1]));
                 trip.setCompany(company);
                 trip.setPlane(words[2]);
                 trip.setTownFrom(words[3]);
@@ -147,7 +151,7 @@ public class CreatDBFromFile {
                 trip.setTimeOut(LocalTime.parse(words[5].split(" ")[1]));
                 trip.setTimeIn(LocalTime.parse(words[6].split(" ")[1]));
 
-                tdi.createTrip(trip, sessionFactory);
+                tdi.createTrip(trip);
             }
 
         } catch (IOException e) {
@@ -155,9 +159,9 @@ public class CreatDBFromFile {
         }
     }
 
-    public static void creatPassInTrip(String path, SessionFactory sessionFactory) {
+    public void creatPassInTrip(String path) {
 
-        PassInTripDao passInTripDao = new PassInTripDaoImpl();
+        PassInTripDao passInTripDao = new PassInTripDaoImpl(sessionFactory);
         PassInTrip passInTrip = new PassInTrip();
         String[] words;
         String line;
@@ -176,7 +180,7 @@ public class CreatDBFromFile {
                 passInTrip.setDate(LocalDate.parse(words[2],
                         DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")));
                 passInTrip.setPlace(words[3]);
-                passInTripDao.createPassInTrip(passInTrip, sessionFactory);
+                passInTripDao.createPassInTrip(passInTrip);
                 System.out.println();
             }
         } catch (IOException e) {
