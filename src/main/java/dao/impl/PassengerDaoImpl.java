@@ -54,8 +54,8 @@ public class PassengerDaoImpl implements PassengerDao {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        session.createQuery("DELETE FROM Passenger WHERE id = :id").
-                setParameter("id", id).executeUpdate();
+        session.createQuery("DELETE FROM Passenger WHERE id = :ID").
+                setParameter("ID", id).executeUpdate();
 
         session.getTransaction().commit();
         session.close();

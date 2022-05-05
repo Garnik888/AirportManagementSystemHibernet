@@ -56,8 +56,8 @@ public class CompanyDaoImpl implements CompanyDao {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
-       session.createQuery("DELETE FROM Company WHERE id = :id")
-               .setParameter("id",id).executeUpdate();
+       session.createQuery("DELETE FROM Company WHERE id = :ID")
+               .setParameter("ID",id).executeUpdate();
 
         session.getTransaction().commit();
         session.close();

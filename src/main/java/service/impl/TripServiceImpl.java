@@ -37,7 +37,20 @@ public class TripServiceImpl implements TripService {
 
     @Override
     public Set<Trip> get(int offset, int perPage, String sort) {
-        return null;
+
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        Set<Trip> trips;
+        Query query = session.createQuery("SELECT t FROM Trip t ORDER BY :SORT").
+                setParameter("SORT", sort).setMaxResults(perPage).setFirstResult(offset);
+
+        trips = new HashSet<>(query.getResultList());
+
+        session.getTransaction().commit();
+        session.close();
+
+        return trips;
     }
 
     @Override
@@ -64,8 +77,8 @@ public class TripServiceImpl implements TripService {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        Query query = session.createQuery("SELECT tr FROM Trip tr WHERE townFrom = :city")
-                .setParameter("city", city);
+        Query query = session.createQuery("SELECT tr FROM Trip tr WHERE townFrom = :CITY")
+                .setParameter("CITY", city);
         List<Trip> trips = new ArrayList<>(query.getResultList());
 
         session.getTransaction().commit();
@@ -80,8 +93,8 @@ public class TripServiceImpl implements TripService {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        Query query = session.createQuery("SELECT tr FROM Trip tr WHERE townTo = :city")
-                .setParameter("city", city);
+        Query query = session.createQuery("SELECT tr FROM Trip tr WHERE townTo = :CITY")
+                .setParameter("CITY", city);
         List<Trip> trips = new ArrayList<>(query.getResultList());
 
         session.getTransaction().commit();
