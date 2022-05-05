@@ -4,8 +4,7 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@Table(name = "address", uniqueConstraints =
-@UniqueConstraint(columnNames = {"country", "city"}))
+@Table(name = "address", uniqueConstraints = @UniqueConstraint(columnNames = {"country", "city"}))
 public class Address {
 
     @Id
@@ -18,6 +17,7 @@ public class Address {
 
     @OneToMany(mappedBy = "address", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<Passenger> passengers = new HashSet<>();
+
     public Address() {
 
     }
@@ -69,11 +69,8 @@ public class Address {
 
     @Override
     public String toString() {
-        return "Address{" +
-                "id=" + id +
-                ", country='" + country + '\'' +
-                ", city='" + city + '\'' +
-                ", passengers=" + passengers +
-                '}';
+        return "Address{" + "id=" + id + ", country='" + country + '\'' + ", city='" + city + '\'' +
+                //", passengers=" + passengers +
+                "}\n";
     }
 }

@@ -14,9 +14,9 @@ public class CompanyServiceImpl implements CompanyService {
     private SessionFactory sessionFactory;
     private CompanyDao cdi;
 
-    public CompanyServiceImpl(SessionFactory sessionFactory, CompanyDao cdi) {
+    public CompanyServiceImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
-        this.cdi = cdi;
+        cdi = new CompanyDaoImpl(sessionFactory);
     }
 
     @Override

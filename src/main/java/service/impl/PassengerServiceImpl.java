@@ -15,9 +15,9 @@ public class PassengerServiceImpl implements PassengerService {
     private SessionFactory sessionFactory;
     private PassengerDao pdi;
 
-    public PassengerServiceImpl(SessionFactory sessionFactory, PassengerDao pdi) {
+    public PassengerServiceImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
-        this.pdi = pdi;
+        pdi = new PassengerDaoImpl(sessionFactory);
     }
 
     @Override

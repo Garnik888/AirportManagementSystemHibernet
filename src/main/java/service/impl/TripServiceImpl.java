@@ -1,6 +1,7 @@
 package service.impl;
 
 import dao.TripDao;
+import dao.impl.TripDaoImpl;
 import model.Trip;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,9 +18,9 @@ public class TripServiceImpl implements TripService {
     private SessionFactory sessionFactory;
     private TripDao tdi;
 
-    public TripServiceImpl(SessionFactory sessionFactory, TripDao tdi) {
+    public TripServiceImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
-        this.tdi = tdi;
+        tdi = new TripDaoImpl(sessionFactory);
     }
 
     @Override

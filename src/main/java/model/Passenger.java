@@ -17,14 +17,14 @@ public class Passenger {
     @Column(name = "phone", unique = true, nullable = false, length = 50)
     private String phone;
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_address", foreignKey = @ForeignKey(name = "address_passenger_fk"))
     private Address address;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "pass_in_trip",
-    joinColumns = {@JoinColumn(name = "id_psg")},
-    inverseJoinColumns = {@JoinColumn(name = "id_trip")})
+            joinColumns = {@JoinColumn(name = "id_psg")},
+            inverseJoinColumns = {@JoinColumn(name = "id_trip")})
     Set<Trip> trips = new HashSet<>();
 
     public Passenger() {
@@ -91,8 +91,8 @@ public class Passenger {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
-                ", address=" + address +
-                ", trips=" + trips +
-                '}';
+                //", address=" + address +
+                //", trips=" + trips +
+                "}\n";
     }
 }

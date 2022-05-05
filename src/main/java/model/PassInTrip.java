@@ -82,6 +82,6 @@ public class PassInTrip implements Serializable {
                 ", tripId=" + tripId +
                 ", date=" + date +
                 ", place='" + place + '\'' +
-                '}';
+                "}\n";
     }
 }

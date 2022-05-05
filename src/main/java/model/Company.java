@@ -20,6 +20,7 @@ public class Company {
     private LocalDate foundingDate;
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     private List<Trip> trips = new ArrayList<>();
+
     public Company() {
 
     }
@@ -75,7 +76,7 @@ public class Company {
                 "id=" + id +
                 ", companyName='" + companyName + '\'' +
                 ", foundingDate=" + foundingDate +
-                ", trips=" + trips +
-                '}';
+                //", trips=" + trips +
+                "}\n";
     }
 }

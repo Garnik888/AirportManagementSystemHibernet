@@ -20,7 +20,7 @@ public class Trip {
     private String plane;
     @Column(name = "town_from", nullable = false, length = 50)
     private String townFrom;
-    @Column(name = "town_to",nullable = false, length = 50)
+    @Column(name = "town_to", nullable = false, length = 50)
     private String townTo;
     @Column(name = "time_out", nullable = false)
     private LocalTime timeOut;
@@ -107,13 +107,13 @@ public class Trip {
     public String toString() {
         return "Trip{" +
                 "id=" + id +
-                ", company=" + company +
+                // ", company=" + company +
                 ", plane='" + plane + '\'' +
                 ", townFrom='" + townFrom + '\'' +
                 ", townTo='" + townTo + '\'' +
                 ", timeOut=" + timeOut +
                 ", timeIn=" + timeIn +
-                ", passengers=" + passengers +
-                '}';
+                // ", passengers=" + passengers +
+                "}\n";
     }
 }
