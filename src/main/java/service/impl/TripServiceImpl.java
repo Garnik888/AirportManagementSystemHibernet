@@ -1,6 +1,6 @@
 package service.impl;
 
-import dao.TripDao;
+import dao.AllDao;
 import dao.impl.TripDaoImpl;
 import model.Trip;
 import org.hibernate.Session;
@@ -16,7 +16,7 @@ import java.util.Set;
 public class TripServiceImpl implements TripService {
 
     private SessionFactory sessionFactory;
-    private TripDao tdi;
+    private AllDao<Trip> tdi;
 
     public TripServiceImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
@@ -26,7 +26,7 @@ public class TripServiceImpl implements TripService {
     @Override
     public Trip getById(long id) {
 
-        return tdi.getTripById(id);
+        return tdi.getById(id);
     }
 
     @Override
@@ -56,7 +56,7 @@ public class TripServiceImpl implements TripService {
     @Override
     public void save(Trip passenger) {
 
-        tdi.createTrip(passenger);
+        tdi.create(passenger);
     }
 
     @Override

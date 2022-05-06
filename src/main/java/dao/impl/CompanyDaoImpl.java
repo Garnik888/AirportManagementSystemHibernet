@@ -1,6 +1,7 @@
 package dao.impl;
 
-import dao.CompanyDao;
+
+import dao.AllDao;
 import model.Company;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,7 +11,7 @@ import org.hibernate.query.Query;
 import java.util.HashSet;
 import java.util.Set;
 
-public class CompanyDaoImpl implements CompanyDao {
+public class CompanyDaoImpl implements AllDao<Company> {
 
     private SessionFactory sessionFactory;
 
@@ -19,11 +20,12 @@ public class CompanyDaoImpl implements CompanyDao {
     }
 
     public CompanyDaoImpl(SessionFactory sessionFactory) {
+
         this.sessionFactory = sessionFactory;
     }
 
     @Override
-    public void createCompany(Company company) {
+    public void create(Company company) {
 
         Session session = sessionFactory.openSession();
         session.beginTransaction();
@@ -40,7 +42,7 @@ public class CompanyDaoImpl implements CompanyDao {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        Company old  = getCompanyById(id);
+        Company old  = getById(id);
         company.setId(old.getId());
 
         session.merge(company);
@@ -64,7 +66,7 @@ public class CompanyDaoImpl implements CompanyDao {
     }
 
     @Override
-    public Company getCompanyById(long id) {
+    public Company getById(long id) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 

@@ -1,6 +1,6 @@
 package service.impl;
 
-import dao.CompanyDao;
+import dao.AllDao;
 import dao.impl.CompanyDaoImpl;
 import model.Company;
 import org.hibernate.Session;
@@ -15,7 +15,7 @@ import java.util.Set;
 public class CompanyServiceImpl implements CompanyService {
 
     private SessionFactory sessionFactory;
-    private CompanyDao cdi;
+    private AllDao<Company> cdi;
 
     public CompanyServiceImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
@@ -25,7 +25,7 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public Company getById(long id) {
 
-        return cdi.getCompanyById(id);
+        return cdi.getById(id);
     }
 
     @Override
@@ -56,7 +56,7 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public void save(Company company) {
 
-        cdi.createCompany(company);
+        cdi.create(company);
     }
 
     @Override

@@ -90,6 +90,14 @@ public class Trip {
         this.timeIn = timeIn;
     }
 
+    public Set<Passenger> getPassengers() {
+        return passengers;
+    }
+
+    public void setPassengers(Set<Passenger> passengers) {
+        this.passengers = passengers;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -100,20 +108,18 @@ public class Trip {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, company, plane, townFrom, townTo, timeOut, timeIn);
+        return Objects.hash(id, plane, townFrom, townTo, timeOut, timeIn);
     }
 
     @Override
     public String toString() {
         return "Trip{" +
                 "id=" + id +
-                // ", company=" + company +
                 ", plane='" + plane + '\'' +
                 ", townFrom='" + townFrom + '\'' +
                 ", townTo='" + townTo + '\'' +
                 ", timeOut=" + timeOut +
                 ", timeIn=" + timeIn +
-                // ", passengers=" + passengers +
                 "}\n";
     }
 }

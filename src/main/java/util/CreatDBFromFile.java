@@ -43,7 +43,7 @@ public class CreatDBFromFile {
                 com.setCompanyName(words[0]);
                 com.setFoundingDate(LocalDate.parse(words[1], DateTimeFormatter.ofPattern("M/d/yyyy")));
 
-                cdi.createCompany(com);
+                cdi.create(com);
             }
 
         } catch (Exception e) {
@@ -116,7 +116,7 @@ public class CreatDBFromFile {
                 for (Address address1 : setAdd) {
                     if (address1.equals(address)) {
                         passenger.setAddress(address1);
-                        passengerDao.createPassenger(passenger);
+                        passengerDao.create(passenger);
                         break;
                     }
                 }
@@ -143,7 +143,7 @@ public class CreatDBFromFile {
                 words = line.split(",");
 
                 trip.setId(Long.parseLong(words[0]));
-                Company company = cdi.getCompanyById(Long.parseLong(words[1]));
+                Company company = cdi.getById(Long.parseLong(words[1]));
                 trip.setCompany(company);
                 trip.setPlane(words[2]);
                 trip.setTownFrom(words[3]);
@@ -151,7 +151,7 @@ public class CreatDBFromFile {
                 trip.setTimeOut(LocalTime.parse(words[5].split(" ")[1]));
                 trip.setTimeIn(LocalTime.parse(words[6].split(" ")[1]));
 
-                tdi.createTrip(trip);
+                tdi.create(trip);
             }
 
         } catch (IOException e) {

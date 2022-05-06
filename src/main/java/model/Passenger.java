@@ -76,13 +76,12 @@ public class Passenger {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Passenger passenger = (Passenger) o;
-        return id == passenger.id && Objects.equals(name, passenger.name) && Objects.equals(phone, passenger.phone)
-                && Objects.equals(address, passenger.address) && Objects.equals(trips, passenger.trips);
+        return id == passenger.id && Objects.equals(name, passenger.name) && Objects.equals(phone, passenger.phone);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, phone, address, trips);
+        return Objects.hash(id, name, phone);
     }
 
     @Override
@@ -91,8 +90,6 @@ public class Passenger {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
-                //", address=" + address +
-                //", trips=" + trips +
                 "}\n";
     }
 }

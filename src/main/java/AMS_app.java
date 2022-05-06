@@ -1,7 +1,4 @@
-import dao.AddressDao;
-import dao.CompanyDao;
-import dao.PassengerDao;
-import dao.TripDao;
+
 import dao.impl.AddressDaoImpl;
 import dao.impl.CompanyDaoImpl;
 import dao.impl.PassengerDaoImpl;
@@ -31,6 +28,7 @@ public class AMS_app {
 //        System.out.println(tripService.getTripsFrom("Rostov").toString());
 //        tripService.delete(1100);
         System.out.println(tripService.get(2,10, "id"));
+        passengerService.cancelTrip(1,1181);
 //        creatDBFromFile.creatComp("src/main/java/resource/companies.txt");
 //        creatDBFromFile.creatPassenger("src/main/java/resource/passengers .txt");
 //        creatDBFromFile.creatTrip("src/main/java/resource/trip.txt");

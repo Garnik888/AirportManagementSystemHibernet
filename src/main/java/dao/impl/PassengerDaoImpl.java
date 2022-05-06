@@ -1,6 +1,6 @@
 package dao.impl;
 
-import dao.PassengerDao;
+import dao.AllDao;
 import model.Passenger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,7 +9,7 @@ import org.hibernate.query.Query;
 import java.util.HashSet;
 import java.util.Set;
 
-public class PassengerDaoImpl implements PassengerDao {
+public class PassengerDaoImpl implements AllDao<Passenger> {
 
     private SessionFactory sessionFactory;
 
@@ -18,11 +18,12 @@ public class PassengerDaoImpl implements PassengerDao {
     }
 
     public PassengerDaoImpl(SessionFactory sessionFactory) {
+
         this.sessionFactory = sessionFactory;
     }
 
     @Override
-    public void createPassenger(Passenger passenger) {
+    public void create(Passenger passenger) {
 
         Session session = sessionFactory.openSession();
         session.beginTransaction();
@@ -39,7 +40,7 @@ public class PassengerDaoImpl implements PassengerDao {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        Passenger pass = getPassengerById(id);
+        Passenger pass = getById(id);
         passenger.setId(pass.getId());
         session.merge(passenger);
 
@@ -62,7 +63,7 @@ public class PassengerDaoImpl implements PassengerDao {
     }
 
     @Override
-    public Passenger getPassengerById(long id) {
+    public Passenger getById(long id) {
 
         Session session = sessionFactory.openSession();
         session.beginTransaction();

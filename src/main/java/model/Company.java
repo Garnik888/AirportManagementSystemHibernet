@@ -67,7 +67,7 @@ public class Company {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, companyName, foundingDate, trips);
+        return Objects.hash(id, companyName, foundingDate);
     }
 
     @Override
@@ -76,7 +76,6 @@ public class Company {
                 "id=" + id +
                 ", companyName='" + companyName + '\'' +
                 ", foundingDate=" + foundingDate +
-                //", trips=" + trips +
-                "}\n";
+                "}/n";
     }
 }

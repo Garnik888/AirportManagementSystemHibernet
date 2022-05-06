@@ -1,16 +1,15 @@
 package dao.impl;
 
-import dao.AddressDao;
+import dao.AllDao;
 import model.Address;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
-import util.HibernateSessionFactoryUtil;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class AddressDaoImpl implements AddressDao {
+public class AddressDaoImpl implements AllDao<Address> {
 
     private SessionFactory sessionFactory;
 
@@ -23,7 +22,7 @@ public class AddressDaoImpl implements AddressDao {
     }
 
     @Override
-    public void createAddress(Address address) {
+    public void create(Address address) {
 
         Session session = sessionFactory.openSession();
         session.beginTransaction();
@@ -40,7 +39,7 @@ public class AddressDaoImpl implements AddressDao {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        Address old  = getAddressById(id);
+        Address old  = getById(id);
         address.setId(old.getId());
         session.merge(address);
 
@@ -62,7 +61,7 @@ public class AddressDaoImpl implements AddressDao {
     }
 
     @Override
-    public Address getAddressById(long id) {
+    public Address getById(long id) {
 
         Session session = sessionFactory.openSession();
         session.beginTransaction();

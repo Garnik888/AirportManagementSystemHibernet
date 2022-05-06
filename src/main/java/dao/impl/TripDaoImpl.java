@@ -1,6 +1,7 @@
 package dao.impl;
 
-import dao.TripDao;
+
+import dao.AllDao;
 import model.Trip;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,7 +10,7 @@ import org.hibernate.query.Query;
 import java.util.HashSet;
 import java.util.Set;
 
-public class TripDaoImpl implements TripDao {
+public class TripDaoImpl implements AllDao<Trip> {
 
     private SessionFactory sessionFactory;
 
@@ -23,7 +24,7 @@ public class TripDaoImpl implements TripDao {
     }
 
     @Override
-    public void createTrip(Trip trip) {
+    public void create(Trip trip) {
 
         Session session = sessionFactory.openSession();
         session.beginTransaction();
@@ -38,7 +39,7 @@ public class TripDaoImpl implements TripDao {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        Trip tr = getTripById(id);
+        Trip tr = getById(id);
         trip.setId(tr.getId());
         session.merge(trip);
 
@@ -60,7 +61,7 @@ public class TripDaoImpl implements TripDao {
     }
 
     @Override
-    public Trip getTripById(long id) {
+    public Trip getById(long id) {
 
         Session session = sessionFactory.openSession();
         session.beginTransaction();

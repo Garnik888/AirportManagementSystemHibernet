@@ -64,13 +64,15 @@ public class Address {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, country, city, passengers);
+        return Objects.hash(id, country, city);
     }
 
     @Override
     public String toString() {
-        return "Address{" + "id=" + id + ", country='" + country + '\'' + ", city='" + city + '\'' +
-                //", passengers=" + passengers +
-                "}\n";
+        return "Address{" +
+                "id=" + id +
+                ", country='" + country + '\'' +
+                ", city='" + city + '\'' +
+                "}/n";
     }
 }
