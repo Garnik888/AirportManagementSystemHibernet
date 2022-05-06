@@ -50,7 +50,9 @@ public class PassengerServiceImpl implements PassengerService {
 
         Set<Passenger> passengers;
 
-        Query query = session.createQuery("SELECT p FROM Passenger p ORDER BY :SORT").
+        String sql = "SELECT c FROM Company c ORDER BY c." + sort + " DESC";
+
+        Query query = session.createQuery(sql).
                 setParameter("SORT", sort).setMaxResults(perPage).setFirstResult(offset);
 
         passengers = new HashSet<>(query.getResultList());
